@@ -3,7 +3,7 @@ import { Router } from "express";
 const router = Router();
 
 router.get("/", (req, res) => {
-  res.json({ message: "Hello from Vendor" });
+  res.json({ message: "Hello from Shopping" });
 });
 
-export { router as vendorRoute };
+export { router as shoppingRoute };
