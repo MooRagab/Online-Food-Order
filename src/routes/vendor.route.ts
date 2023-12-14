@@ -1,9 +1,8 @@
 import { Router } from "express";
+import { vendor } from "../controllers/vendorController";
 
 const router = Router();
 
-router.get("/", (req, res) => {
-  res.json({ message: "Hello from Vendor" });
-});
+router.get("/", vendor);
 
 export { router as vendorRoute };

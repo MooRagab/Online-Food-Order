@@ -10,7 +10,7 @@ import {
   deliveryRoute,
   shoppingRoute,
   vendorRoute,
-} from "./routes/index.route";
+} from "./routes/index.routes";
 
 const app = express();
 app.use(express.json());
@@ -21,6 +21,12 @@ app.use("/vendor", vendorRoute);
 app.use("/delivery", deliveryRoute);
 app.use("/customer", customerRoute);
 app.use("/shopping", shoppingRoute);
+
+//In-Valid Routings
+
+app.use("*", (req, res) => {
+  res.status(404).json({ message: "404 Page Not Found" });
+});
 
 connectDB();
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

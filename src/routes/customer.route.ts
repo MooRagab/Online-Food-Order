@@ -1,9 +1,8 @@
 import { Router } from "express";
+import { customer } from "../controllers/customerController";
 
 const router = Router();
 
-router.get("/", (req, res) => {
-  res.json({ message: "Hello from Customer" });
-});
+router.get("/", customer);
 
 export { router as customerRoute };

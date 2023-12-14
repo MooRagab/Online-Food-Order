@@ -1,9 +1,8 @@
 import { Router } from "express";
+import { shopping } from "../controllers/shoppingController";
 
 const router = Router();
 
-router.get("/", (req, res) => {
-  res.json({ message: "Hello from Shopping" });
-});
+router.get("/", shopping);
 
 export { router as shoppingRoute };
