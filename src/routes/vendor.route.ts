@@ -6,3 +6,4 @@ const router = Router();
 router.get("/", vendor);
 
 export { router as vendorRoute };
+ 

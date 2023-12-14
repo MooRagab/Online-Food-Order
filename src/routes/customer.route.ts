@@ -6,3 +6,4 @@ const router = Router();
 router.get("/", customer);
 
 export { router as customerRoute };
+ 
