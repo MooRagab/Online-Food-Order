@@ -11,7 +11,7 @@ import {
   shoppingRoute,
   vendorRoute,
 } from "./routes/index.routes";
- 
+
 const app = express();
 app.use(express.json());
 const port = process.env.PORT || 5000;
