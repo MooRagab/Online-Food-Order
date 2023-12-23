@@ -12,7 +12,7 @@ const vendorSchema = new Schema(
     password: { type: String, required: true },
     salt: { type: String, required: true },
     serviceAvailable: { type: Boolean },
-    coverImages: { type: [String] },
+    coverImages: { type: [String] }, 
     rating: { type: Number },
     foods: [
       {
@@ -28,3 +28,4 @@ const vendorSchema = new Schema(
 
 const vendorModel = model("Vendor", vendorSchema);
 export default vendorModel;
+ 
