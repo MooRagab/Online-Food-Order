@@ -1,4 +1,21 @@
-import { Schema, model, Types } from "mongoose";
+import { Schema, model, Types, Document } from "mongoose";
+interface VendorDoc extends Document {
+  name: string;
+  ownerName: string;
+  foodType: [string];
+  pincode: string;
+  address: string;
+  phone: string;
+  email: string;
+  password: string;
+  salt: string;
+  serviceAvailable: boolean;
+  coverImages: [string];
+  rating: number;
+  foods: any;
+  lat: number;
+  lng: number;
+}
 
 const vendorSchema = new Schema(
   {
@@ -12,7 +29,7 @@ const vendorSchema = new Schema(
     password: { type: String, required: true },
     salt: { type: String, required: true },
     serviceAvailable: { type: Boolean },
-    coverImages: { type: [String] }, 
+    coverImages: { type: [String] },
     rating: { type: Number },
     foods: [
       {
@@ -26,6 +43,5 @@ const vendorSchema = new Schema(
   { timestamps: true }
 );
 
-const vendorModel = model("Vendor", vendorSchema);
+const vendorModel = model<VendorDoc>("Vendor", vendorSchema);
 export default vendorModel;
- 

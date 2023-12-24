@@ -1,19 +1,19 @@
 import { Request, Response } from "express";
 import vendorModel from "../DB/models/Vendor.model";
 import bcrypt from "bcrypt";
-import { createVandorInput } from "../dto/vendor.dto";
+import { createVendorInput } from "../dto/vendor.dto";
 
 export const createVendor = async (req: Request, res: Response) => {
   const {
     name,
     address,
     pincode,
-    foodType,
+    foodType, 
     email,
     password,
     ownerName,
     phone,
-  } = <createVandorInput>req.body;
+  } = <createVendorInput>req.body;
 
   const vendor = await vendorModel.findOne({ email }).select("email");
   if (vendor) {
