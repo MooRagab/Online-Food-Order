@@ -8,7 +8,7 @@ export const createVendor = async (req: Request, res: Response) => {
     name,
     address,
     pincode,
-    foodType, 
+    foodType,
     email,
     password,
     ownerName,
@@ -17,18 +17,23 @@ export const createVendor = async (req: Request, res: Response) => {
 
   const vendor = await vendorModel.findOne({ email }).select("email");
   if (vendor) {
-    res.status(409).json({ message: "Email Is Already Exist" });
+    return res.status(409).json({ message: "Email Is Already Exist" });
   } else {
     const hash = bcrypt.hashSync(password, parseInt(process.env.SALTROUND));
     const savedVendor = await vendorModel.create({
-      name,
-      address,
-      pincode,
-      foodType,
-      ownerName,
-      phone,
+      name: name,
+      address: address,
+      pincode: pincode,
+      foodType: foodType,
+      ownerName: ownerName,
+      phone: phone,
       password: hash,
+      rating: 0,
+      serviceAvailable: false,
+      coverImages: [],
     });
+
+    return res.status(200).json({ message: "Done", savedVendor });
   }
 };
 
