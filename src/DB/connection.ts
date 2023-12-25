@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 const connectDB = async () => {
   return await mongoose
-    .connect(`${"mongodb://localhost:27017/Online Food Order"}`)
+    .connect(`${"mongodb://localhost:27017/OnlineFoodOrder"}`)
     .then((res) =>
       console.log(`DB Connected successfully on .........${process.env.DBURI}`)
     )
@@ -9,4 +9,4 @@ const connectDB = async () => {
 };
 
 export default connectDB;
- 
+  

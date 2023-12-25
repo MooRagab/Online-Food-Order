@@ -21,6 +21,7 @@ export const createVendor = async (req: Request, res: Response) => {
   } else {
     const hash = bcrypt.hashSync(password, parseInt(process.env.SALTROUND));
     const savedVendor = await vendorModel.create({
+      email: email,
       name: name,
       address: address,
       pincode: pincode,

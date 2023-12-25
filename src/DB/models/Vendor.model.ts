@@ -35,7 +35,7 @@ const vendorSchema = new Schema(
     // ],
   },
   { timestamps: true }
-);
+); 
 
 const vendorModel = model<VendorDoc>("Vendor", vendorSchema);
 export default vendorModel;
