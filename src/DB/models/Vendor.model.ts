@@ -37,8 +37,6 @@ const vendorSchema = new Schema(
         ref: "food",
       },
     ],
-    lat: { type: Number },
-    lng: { type: Number },
   },
   { timestamps: true }
 );
