@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { vendor } from "../controllers/vendorController";
+import { vendorLogin, vendor } from "../controllers/vendorController";
 
 const router = Router();
 
 router.get("/", vendor);
-
+router.post("/login" ,vendorLogin)
 export { router as vendorRoute };
  
