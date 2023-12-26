@@ -44,8 +44,13 @@ export const createVendor = async (req: Request, res: Response) => {
   }
 };
 
-export const getVendor = async (req: Request, res: Response) => {
-  res.json({ message: "Hello from Admin" });
+export const getVendors = async (req: Request, res: Response) => {
+  const vendors = await vendorModel.find();
+  if (vendors.length) {
+    return res.status(200).json({ message: "Vendors List", vendors: vendors });
+  } else {
+    return res.status(404).json({ message: "There Is No Vendors" });
+  }
 };
 
 export const getVendorById = async (req: Request, res: Response) => {
