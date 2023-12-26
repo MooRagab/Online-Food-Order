@@ -54,5 +54,11 @@ export const getVendors = async (req: Request, res: Response) => {
 };
 
 export const getVendorById = async (req: Request, res: Response) => {
-  res.json({ message: "Hello from Admin" });
+  const { id } = req.params;
+  const vendor = await vendorModel.findById({ _id: id });
+  if (!vendor) {
+    return res.status(404).json({ message: "Vendor Not Found" });
+  } else {
+    return res.status(200).json({ message: vendor });
+  }
 };
