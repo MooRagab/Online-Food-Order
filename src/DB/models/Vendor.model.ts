@@ -21,8 +21,8 @@ const vendorSchema = new Schema(
     foodType: { type: [String] },
     pincode: { type: String, required: true },
     address: { type: String },
-    phone: { type: String, required: true },
-    email: { type: String, required: true },
+    phone: { type: String, required: true, unique: true },
+    email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     serviceAvailable: { type: Boolean },
     coverImages: { type: [String] },
@@ -34,8 +34,18 @@ const vendorSchema = new Schema(
     //   },
     // ],
   },
-  { timestamps: true }
-); 
+  {
+    toJSON: {
+      transform(doc, ret) {
+        delete ret.__v;
+        delete ret.password;
+        delete ret.createdAt;
+        delete ret.updatedAt;
+      },
+    },
+    timestamps: true,
+  }
+);
 
 const vendorModel = model<VendorDoc>("Vendor", vendorSchema);
 export default vendorModel;

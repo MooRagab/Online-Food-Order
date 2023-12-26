@@ -19,22 +19,28 @@ export const createVendor = async (req: Request, res: Response) => {
   if (vendor) {
     return res.status(409).json({ message: "Email Is Already Exist" });
   } else {
-    const hash = bcrypt.hashSync(password, parseInt(process.env.SALTROUND));
-    const savedVendor = await vendorModel.create({
-      email: email,
-      name: name,
-      address: address,
-      pincode: pincode,
-      foodType: foodType,
-      ownerName: ownerName,
-      phone: phone,
-      password: hash,
-      rating: 0,
-      serviceAvailable: false,
-      coverImages: [],
-    });
-
-    return res.status(200).json({ message: "Done", savedVendor });
+    const vendorPhone = await vendorModel.findOne({ phone }).select("phone");
+    if (vendorPhone) {
+      return res.status(409).json({ message: "Phone Number Is Already Used" });
+    } else {
+      const hash = bcrypt.hashSync(password, parseInt(process.env.SALTROUND));
+      const savedVendor = await vendorModel.create({
+        email: email,
+        name: name,
+        address: address,
+        pincode: pincode,
+        foodType: foodType,
+        ownerName: ownerName,
+        phone: phone,
+        password: hash,
+        rating: 0,
+        serviceAvailable: false,
+        coverImages: [],
+      });
+      return res
+        .status(200)
+        .json({ message: "Done", savedVendor: savedVendor });
+    }
   }
 };
 
