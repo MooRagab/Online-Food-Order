@@ -2,6 +2,8 @@ import { Request, Response } from "express";
 import vendorModel from "../DB/models/Vendor.model";
 import bcrypt from "bcrypt";
 import { createVendorInput } from "../dto/vendor.dto";
+import jwt from "jsonwebtoken";
+import sendEmail from "../services/Email";
 
 export const createVendor = async (req: Request, res: Response) => {
   const {
@@ -37,9 +39,16 @@ export const createVendor = async (req: Request, res: Response) => {
         serviceAvailable: false,
         coverImages: [],
       });
-      return res
-        .status(200)
-        .json({ message: "Done", savedVendor: savedVendor });
+      if (!savedVendor) {
+        res.status(400).json({ message: "Fail to Register, Please Try Again" });
+      } else {
+        const token = jwt.sign({ id: savedVendor._id }, process.env.EMAILTOKEN);
+        const message = `
+      <a href = ${req.protocol}://${req.headers.host}/admin/confirmEmail/${token}>Confirm Email</a>
+      `;
+        await sendEmail(email, "confirmEmail", message);
+        res.status(201).json({ message: "Done!" });
+      }
     }
   }
 };
