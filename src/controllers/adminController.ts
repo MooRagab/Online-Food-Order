@@ -53,6 +53,29 @@ export const createVendor = async (req: Request, res: Response) => {
   }
 };
 
+export const confirmEmail = async (req: Request, res: Response) => {
+  try {
+    const { token } = req.params;
+    const decoded = jwt.verify(token, process.env.EMAILTOKEN) as any;
+    if (!decoded?.id) {
+      res.status(400).json({ message: "In-Valid Token Payload" });
+    } else {
+      const user = await vendorModel.updateOne(
+        {
+          _id: decoded.id,
+          confirmEmail: false,
+        },
+        { confirmEmail: true }
+      );
+      user.modifiedCount
+        ? res.status(200).json({ message: "Confirmed Done" })
+        : res.status(400).json({ message: "Already Confirmed" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Internal Server Error", error });
+  }
+};
+
 export const getVendors = async (req: Request, res: Response) => {
   const vendors = await vendorModel.find();
   if (vendors.length) {

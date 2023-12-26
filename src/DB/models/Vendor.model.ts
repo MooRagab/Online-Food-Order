@@ -10,6 +10,7 @@ interface VendorDoc extends Document {
   password: string;
   serviceAvailable: boolean;
   coverImages: [string];
+  confirmEmail: { type: Boolean; default: false };
   rating: number;
   // foods: any;
 }
@@ -25,6 +26,7 @@ const vendorSchema = new Schema(
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     serviceAvailable: { type: Boolean },
+    confirmEmail: { type: Boolean, default: false },
     coverImages: { type: [String] },
     rating: { type: Number },
     // foods: [
