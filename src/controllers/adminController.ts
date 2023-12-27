@@ -47,7 +47,7 @@ export const createVendor = async (req: Request, res: Response) => {
       <a href = ${req.protocol}://${req.headers.host}/admin/confirmEmail/${token}>Confirm Email</a>
       `;
         await sendEmail(email, "confirmEmail", message);
-        res.status(201).json({ message: "Done!" });
+        res.status(201).json({ message: "Done!", savedVendor });
       }
     }
   }
