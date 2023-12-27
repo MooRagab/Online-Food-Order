@@ -1,4 +1,5 @@
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 import { NextFunction, Request, Response } from "express";
 import { VendorLoginInputs } from "../dto/vendor.dto";
 import vendorModel from "../DB/models/Vendor.model";
@@ -23,7 +24,10 @@ export const vendorLogin = async (req: Request, res: Response) => {
       if (!matchPass) {
         res.status(401).json({ message: "Wrong Password" });
       } else {
-        res.status(200).json({ message: "Done" });
+        const token = jwt.sign({ id: vendor._id }, process.env.SIGNINTOKEN, {
+          expiresIn: 60 * 60 * 24,
+        });
+        res.status(200).json({ message: "Done", token: token });
       }
     }
   }
