@@ -13,3 +13,9 @@ export interface VendorLoginInputs {
   email: string;
   password: string;
 }
+
+export interface VendorPayload {
+  _id: string;
+  email: string;
+  name: string;
+}

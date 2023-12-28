@@ -6,13 +6,13 @@ async function sendEmail(dest: any, subject: any, message: any) {
       service: "Gmail",
       secure: true,
       auth: {
-        user: process.env.SENDEREMAIL,
-        pass: process.env.SENDEREMAILPASSWORD,
+        user: process.env.SENDER_EMAIL,
+        pass: process.env.SENDER_EMAIL_PASSWORD,
       },
     });
 
     let info = await transporter.sendMail({
-      from: `"Ragab" <${process.env.SENDEREMAIL}>`,
+      from: `"Ragab" <${process.env.SENDER_EMAIL}>`,
       to: dest,
       subject,
 

@@ -5,6 +5,7 @@ import { createVendorInput } from "../dto/vendor.dto";
 import jwt from "jsonwebtoken";
 import sendEmail from "../services/Email";
 
+
 export const createVendor = async (req: Request, res: Response) => {
   const {
     name,
@@ -42,7 +43,7 @@ export const createVendor = async (req: Request, res: Response) => {
       if (!savedVendor) {
         res.status(400).json({ message: "Fail to Register, Please Try Again" });
       } else {
-        const token = jwt.sign({ id: savedVendor._id }, process.env.EMAILTOKEN);
+        const token = jwt.sign({ id: savedVendor._id }, process.env.EMAIL_TOKEN);
         const message = `
       <a href = ${req.protocol}://${req.headers.host}/admin/confirmEmail/${token}>Confirm Email</a>
       `;
@@ -56,7 +57,7 @@ export const createVendor = async (req: Request, res: Response) => {
 export const confirmEmail = async (req: Request, res: Response) => {
   try {
     const { token } = req.params;
-    const decoded = jwt.verify(token, process.env.EMAILTOKEN) as any;
+    const decoded = jwt.verify(token, process.env.EMAIL_TOKEN) as any;
     if (!decoded?.id) {
       res.status(400).json({ message: "In-Valid Token Payload" });
     } else {

@@ -5,5 +5,6 @@ const router = Router();
 
 router.get("/", vendor);
 router.post("/login" ,vendorLogin)
+// router.get("/vendorProfile" , getVendorProfile)
 export { router as vendorRoute };
- 
+  
