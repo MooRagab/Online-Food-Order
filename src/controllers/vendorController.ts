@@ -1,10 +1,8 @@
 import bcrypt from "bcrypt";
 import { NextFunction, Request, Response } from "express";
-import { VendorLoginInputs } from "../dto/vendor.dto";
+import { VendorLoginInputs } from "../dto";
+import { GenerateSignature } from "../services";
 import vendorModel from "../DB/models/Vendor.model";
-import { GenerateSignature } from "../services/signature";
-
-
 
 export const vendor = async (
   req: Request,

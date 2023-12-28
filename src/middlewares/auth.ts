@@ -1,6 +1,6 @@
 import { Request, NextFunction, Response } from "express";
-import { authPayload } from "../dto/auth.dto";
-import { ValidateSignature } from "../services/signature";
+import { authPayload } from "../dto";
+import { ValidateSignature } from "../services";
 
 declare global {
   namespace Express {
@@ -9,7 +9,6 @@ declare global {
     }
   }
 }
-
 export const Authenticate = async (
   req: Request,
   res: Response,

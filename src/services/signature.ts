@@ -1,7 +1,7 @@
 import { Request } from "express";
 import jwt from "jsonwebtoken";
 import { VendorPayload } from "../dto/vendor.dto";
-import { authPayload } from "../dto/auth.dto";
+import { authPayload } from "../dto";
 
 export const GenerateSignature = async (payload: authPayload) => {
   return jwt.sign(payload, process.env.SIGNIN_TOKEN, { expiresIn: "90d" });
