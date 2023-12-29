@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES5",
+    "target": "ES6",
     "module": "commonjs",
     "lib": ["DOM", "ES6", "ESNext.AsyncIterable"],
     "sourceMap": true,
@@ -10,7 +10,11 @@
     "esModuleInterop": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "strictPropertyInitialization": false
+    "strictPropertyInitialization": false,
+    "typeRoots": ["src/types"]
+  },
+  "ts-node": {
+    "files": true
   }
 }
- 
+

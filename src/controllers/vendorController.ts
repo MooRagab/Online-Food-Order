@@ -1,8 +1,8 @@
 import bcrypt from "bcrypt";
 import { NextFunction, Request, Response } from "express";
-import { VendorLoginInputs } from "../dto";
-import { GenerateSignature } from "../services";
+import { VendorLoginInputs, VendorPayload } from "../dto";
 import vendorModel from "../DB/models/Vendor.model";
+import jwt from "jsonwebtoken";
 
 export const vendor = async (
   req: Request,
@@ -27,21 +27,26 @@ export const vendorLogin = async (req: Request, res: Response) => {
     const matchPass = bcrypt.compareSync(password, user.password);
     if (!matchPass) {
       return res.status(401).json({ message: "Wrong Password" });
+    } else {
+      const token = jwt.sign({ id: user._id } , process.env.SIGNIN_TOKEN, {
+        expiresIn: 60 * 60 * 24,
+      });
+      return res
+        .status(200)
+        .json({ message: "Login Succesfully !", Token: token });
     }
-    const signature = await GenerateSignature({
-      _id: user._id,
-      email: user.email,
-      name: user.name,
-    });
-    return res
-      .status(200)
-      .json({ message: "Login Succesfully !", token: signature });
   } catch (error) {
     res.status(500).json({ message: "Internal Server Error", error });
   }
 };
 
-export const getVendorProfile = async (req: Request, res: Response) => {
-  const profile = await vendorModel.findById(req.user._id);
-  res.status(200).json({ message: "Done", profile });
+export const GetVendorProfile = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+    const user = await vendorModel.findById(req.user._id) ;
+
+  return res.json({ message: "vendor Information Not Found" ,user});
 };
+  

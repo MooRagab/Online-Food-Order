@@ -14,7 +14,7 @@ interface VendorDoc extends Document {
   rating: number;
   // foods: any;
 }
-
+ 
 const vendorSchema = new Schema(
   {
     name: { type: String, required: true },
@@ -29,7 +29,7 @@ const vendorSchema = new Schema(
     confirmEmail: { type: Boolean, default: false },
     coverImages: { type: [String] },
     rating: { type: Number },
-    // foods: [
+    // foods: [ 
     //   {
     //     type: Types.ObjectId,
     //     ref: "food",

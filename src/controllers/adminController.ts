@@ -1,10 +1,9 @@
 import { Request, Response } from "express";
 import vendorModel from "../DB/models/Vendor.model";
 import bcrypt from "bcrypt";
-import { createVendorInput } from "../dto/vendor.dto";
+import { createVendorInput } from "../dto";
 import jwt from "jsonwebtoken";
 import sendEmail from "../services/Email";
-
 
 export const createVendor = async (req: Request, res: Response) => {
   const {
@@ -53,7 +52,7 @@ export const createVendor = async (req: Request, res: Response) => {
     }
   }
 };
-
+ 
 export const confirmEmail = async (req: Request, res: Response) => {
   try {
     const { token } = req.params;
