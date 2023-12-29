@@ -25,7 +25,7 @@ export const auth = () => {
         } else {
           const user = await vendorModel
             .findById(decoded.id)
-            .select("name email profilePic role");
+            .select("name email foodType");
           if (!user) {
             res.status(401).json({ message: "Not Register User" });
           } else {
