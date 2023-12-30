@@ -83,3 +83,11 @@ export const updateVendorService = async (req: Request, res: Response) => {
     res.status(200).json({ message: "Done !" });
   }
 };
+
+// ------------------------------------Add Food--------------------------------------
+
+export const addFood = async (req: Request, res: Response) => {
+
+
+  
+}
