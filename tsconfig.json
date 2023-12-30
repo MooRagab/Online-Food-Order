@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES6",
-    "module": "commonjs",
+    "module": "CommonJS",
     "lib": ["DOM", "ES6", "ESNext.AsyncIterable"],
     "sourceMap": true,
     "outDir": "./dist",

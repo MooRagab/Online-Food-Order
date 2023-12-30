@@ -88,6 +88,5 @@ export const updateVendorService = async (req: Request, res: Response) => {
 
 export const addFood = async (req: Request, res: Response) => {
 
-
   
 }
