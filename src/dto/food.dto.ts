@@ -1,4 +1,5 @@
 export interface CreateFoodInput {
+    vendorId :string;
     name: string;
     description: string;
     category: string;

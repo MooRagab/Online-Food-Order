@@ -1,8 +1,10 @@
 import bcrypt from "bcrypt";
 import { NextFunction, Request, Response } from "express";
-import { VendorLoginInputs, editVendorInput } from "../dto";
+import { CreateFoodInput, VendorLoginInputs, editVendorInput } from "../dto";
 import vendorModel from "../DB/models/Vendor.model";
 import jwt from "jsonwebtoken";
+import cloudinary from "cloudinary";
+import foodModel from "../DB/models/Food.model";
 
 export const vendor = async (req: Request, res: Response) => {
   res.json({ message: "Hello from Vendor" });
@@ -87,6 +89,27 @@ export const updateVendorService = async (req: Request, res: Response) => {
 // ------------------------------------Add Food--------------------------------------
 
 export const addFood = async (req: Request, res: Response) => {
-
-  
-}
+  try {
+    const { name, description, category, foodType, readyTime, price } = <
+      CreateFoodInput
+    >req.body;
+    const vendor = await vendorModel.findById(req.user._id);
+    if (!vendor) {
+      return res.status(400).json({ message: "Unable To Add Food" });
+    } else {
+      const food = await foodModel.create({
+        name: name,
+        description: description,
+        category: category,
+        foodType: foodType,
+        readyTime: readyTime,
+        price: price,
+        vendorId: req.user._id,
+      });
+      vendor.foods.push(food);
+      return res.status(200).json({ message: "food", food: food });
+    }
+  } catch (error) {
+    return res.status(500).json({ message: "Server Error" });
+  }
+};

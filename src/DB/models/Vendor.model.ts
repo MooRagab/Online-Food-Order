@@ -2,7 +2,6 @@ import { Schema, model, Types, Document } from "mongoose";
 interface VendorDoc extends Document {
   name: string;
   ownerName: string;
-  foodType: [string];
   pincode: string;
   address: string;
   phone: string;
@@ -12,14 +11,13 @@ interface VendorDoc extends Document {
   coverImages: [string];
   confirmEmail: { type: Boolean; default: false };
   rating: number;
-  // foods: any;
+  foods: any;
 }
- 
+
 const vendorSchema = new Schema(
   {
     name: { type: String, required: true },
     ownerName: { type: String, required: true },
-    foodType: { type: [String] },
     pincode: { type: String, required: true },
     address: { type: String },
     phone: { type: String, required: true, unique: true },
@@ -29,12 +27,12 @@ const vendorSchema = new Schema(
     confirmEmail: { type: Boolean, default: false },
     coverImages: { type: [String] },
     rating: { type: Number },
-    // foods: [ 
-    //   {
-    //     type: Types.ObjectId,
-    //     ref: "food",
-    //   },
-    // ],
+    foods: [
+      {
+        type: Types.ObjectId,
+        ref: "food",
+      },
+    ],
   },
   {
     toJSON: {

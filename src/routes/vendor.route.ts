@@ -5,6 +5,7 @@ import {
   getVendorProfile,
   updateVendorProfile,
   updateVendorService,
+  addFood,
 } from "../controllers/vendorController";
 import { auth } from "../middlewares";
 
@@ -16,5 +17,6 @@ router.use(auth());
 router.get("/vendorProfile", getVendorProfile);
 router.patch("/updatevendorprofile", updateVendorProfile);
 router.patch("/service", updateVendorService);
+router.post("/addfood", addFood);
 
 export { router as vendorRoute };
