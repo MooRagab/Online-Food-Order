@@ -107,9 +107,25 @@ export const addFood = async (req: Request, res: Response) => {
         vendorId: req.user._id,
       });
       vendor.foods.push(food);
+      await vendor.save();
       return res.status(200).json({ message: "food", food: food });
     }
   } catch (error) {
-    return res.status(500).json({ message: "Server Error" });
+    return res.status(500).json({ message: "Server Error", error: error });
+  }
+};
+
+// ------------------------------------Get Food--------------------------------------
+
+export const getFood = async (req: Request, res: Response) => {
+  try {
+    const getFood = await foodModel.find({ vendorId: req.user._id });
+    if (getFood == null) {
+      return res.status(404).json({ message: "This User have no foods yet" });
+    } else {
+      return res.status(200).json({ message: "Done", getFood });
+    }
+  } catch (error) {
+    return res.status(500).json({ message: "Server Error", error: error });
   }
 };
