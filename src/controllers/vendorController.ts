@@ -3,8 +3,8 @@ import { NextFunction, Request, Response } from "express";
 import { CreateFoodInput, VendorLoginInputs, editVendorInput } from "../dto";
 import vendorModel from "../DB/models/Vendor.model";
 import jwt from "jsonwebtoken";
-import cloudinary from "cloudinary";
 import foodModel from "../DB/models/Food.model";
+import Cloudinary from "../services/Cloudinary";
 
 export const vendor = async (req: Request, res: Response) => {
   res.json({ message: "Hello from Vendor" });
@@ -90,21 +90,40 @@ export const updateVendorService = async (req: Request, res: Response) => {
 
 export const addFood = async (req: Request, res: Response) => {
   try {
-    const { name, description, category, foodType, readyTime, price } = <
-      CreateFoodInput
-    >req.body;
     const vendor = await vendorModel.findById(req.user._id);
     if (!vendor) {
       return res.status(400).json({ message: "Unable To Add Food" });
+    }
+    if (!req.files.length) {
+      res
+        .status(400)
+        .json({ message: "You Must upload some images for your food" });
     } else {
+      const { name, description, category, foodType, readyTime, price } = <
+        CreateFoodInput
+      >req.body;
+      const images = [];
+      const imagePublicIds = [];
+      for (const file of req.files as any) {
+        const { secure_url, public_id } = await Cloudinary.uploader.upload(
+          file.path,
+          {
+            folder: `Online-Food/food/${name}`,
+          }
+        );
+        images.push(secure_url);
+        imagePublicIds.push(public_id);
+      }
       const food = await foodModel.create({
+        images,
         name: name,
         description: description,
         category: category,
         foodType: foodType,
         readyTime: readyTime,
         price: price,
-        vendorId: req.user._id,
+        addedBy: req.user._id,
+        imagePublicIds,
       });
       vendor.foods.push(food);
       await vendor.save();
@@ -129,3 +148,4 @@ export const getFood = async (req: Request, res: Response) => {
     return res.status(500).json({ message: "Server Error", error: error });
   }
 };
+

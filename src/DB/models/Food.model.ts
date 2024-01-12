@@ -14,7 +14,7 @@ export interface FoodDoc extends Document {
 
 const foodSchema = new Schema(
   {
-    vendorId: { type: Types.ObjectId, ref: "Vendor", required: true },
+    addedBy: { type: Types.ObjectId, ref: "Vendor" },
     name: { type: String, required: true },
     description: { type: String, required: true },
     category: { type: String },
@@ -22,7 +22,8 @@ const foodSchema = new Schema(
     readyTime: { type: Number },
     price: { type: Number },
     rating: { type: Number },
-    images: { type: [String] },
+    images: [String],
+    imagePublicIds: [String],
   },
   {
     toJSON: {

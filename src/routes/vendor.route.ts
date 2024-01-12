@@ -9,6 +9,7 @@ import {
   getFood,
 } from "../controllers/vendorController";
 import { auth } from "../middlewares";
+import { fileValidation, myMulter } from "../services/Multer";
 
 const router = Router();
 
@@ -18,8 +19,7 @@ router.use(auth());
 router.get("/vendorProfile", getVendorProfile);
 router.patch("/updatevendorprofile", updateVendorProfile);
 router.patch("/service", updateVendorService);
-router.post("/addfood", addFood);
+router.post("/addfood", myMulter(fileValidation as any).array("images", 5), addFood);
 router.get("/vendorfood", getFood);
 
 export { router as vendorRoute };
- 
