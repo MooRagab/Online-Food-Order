@@ -3,19 +3,19 @@ import vendorModel from "../DB/models/Vendor.model";
 import bcrypt from "bcrypt";
 import { createVendorInput } from "../dto";
 import jwt from "jsonwebtoken";
+import { nanoid } from "nanoid";
 import sendEmail from "../services/Email";
 
 export const createVendor = async (req: Request, res: Response) => {
   const {
     name,
     address,
-    pincode,
     foodType,
     email,
     password,
     ownerName,
     phone,
-  } = <createVendorInput>req.body;
+  } = <createVendorInput>req.body; 
 
   const vendor = await vendorModel.findOne({ email }).select("email");
   if (vendor) {
@@ -26,6 +26,7 @@ export const createVendor = async (req: Request, res: Response) => {
       return res.status(409).json({ message: "Phone Number Is Already Used" });
     } else {
       const hash = bcrypt.hashSync(password, parseInt(process.env.SALTROUND));
+      const pincode = nanoid();
       const savedVendor = await vendorModel.create({
         email: email,
         name: name,
@@ -42,7 +43,10 @@ export const createVendor = async (req: Request, res: Response) => {
       if (!savedVendor) {
         res.status(400).json({ message: "Fail to Register, Please Try Again" });
       } else {
-        const token = jwt.sign({ id: savedVendor._id }, process.env.EMAIL_TOKEN);
+        const token = jwt.sign(
+          { id: savedVendor._id },
+          process.env.EMAIL_TOKEN
+        );
         const message = `
       <a href = ${req.protocol}://${req.headers.host}/admin/confirmEmail/${token}>Confirm Email</a>
       `;
@@ -52,7 +56,7 @@ export const createVendor = async (req: Request, res: Response) => {
     }
   }
 };
- 
+
 export const confirmEmail = async (req: Request, res: Response) => {
   try {
     const { token } = req.params;

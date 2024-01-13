@@ -18,7 +18,7 @@ const vendorSchema = new Schema(
   {
     name: { type: String, required: true },
     ownerName: { type: String, required: true },
-    pincode: { type: String, required: true },
+    pincode: { type: String},
     address: { type: String },
     phone: { type: String, required: true, unique: true },
     email: { type: String, required: true, unique: true },
@@ -35,10 +35,10 @@ const vendorSchema = new Schema(
     ],
   },
   {
-    toJSON: {
+    toJSON: { 
       transform(doc, ret) {
         delete ret.__v;
-        delete ret.password;
+        delete ret.password; 
         delete ret.createdAt;
         delete ret.updatedAt;
       },
