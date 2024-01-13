@@ -13,10 +13,15 @@ export const getFoodAvailability = async (
       serviceAvailable: true,
     })
     .sort([["rating", "descending"]])
-    .populate("foods");
+    .populate([
+      {
+        path: "foods",
+      },
+    ])
   if (result.length > 0) {
     return res.status(200).json(result);
   } else {
     return res.status(404).json({ msg: "Data Not Found!" });
   }
 };
+ 
