@@ -72,6 +72,28 @@ export const updateVendorProfile = async (req: Request, res: Response) => {
   }
 };
 
+// ------------------------------------Add Profile Picture------------------------------------------
+
+export const addProfilePic = async (req: Request, res: Response) => {
+  try {
+    if (!req.file) {
+      res.status(400).json({ message: "Pls Upload your profile Picture" });
+    } else {
+      const { secure_url } = await Cloudinary.uploader.upload(req.file.path, {
+        folder: `Online-Food/${req.user._id}/profilePic`,
+      });
+      await vendorModel.findOneAndUpdate(
+        { _id: req.user._id },
+        {
+          profilePic: secure_url,
+        }
+      );
+      res.status(200).json({ message: "Done" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Catch Error", error });
+  }
+};
 // ------------------------------------Update Vednor Service--------------------------------------
 
 export const updateVendorService = async (req: Request, res: Response) => {
@@ -104,7 +126,7 @@ export const addFood = async (req: Request, res: Response) => {
       >req.body;
       const images = [];
       const imagePublicIds = [];
-      for (const file of req.files as any) {
+      for (const file of req.files as [Express.Multer.File]) {
         const { secure_url, public_id } = await Cloudinary.uploader.upload(
           file.path,
           {

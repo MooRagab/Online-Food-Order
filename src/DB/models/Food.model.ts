@@ -24,7 +24,7 @@ const foodSchema = new Schema(
     rating: { type: Number },
     images: [String],
     imagePublicIds: [String],
-  },
+  }, 
   {
     toJSON: {
       transform(doc, ret) {
@@ -37,5 +37,5 @@ const foodSchema = new Schema(
   }
 );
 
-const foodModel = model<CreateFoodInput>("Food", foodSchema);
+const foodModel = model<FoodDoc>("Food", foodSchema);
 export default foodModel;

@@ -1,4 +1,4 @@
-import { Schema, model, Types, Document } from "mongoose";
+import mongoose,  { Schema, model,  Document } from "mongoose";
 interface VendorDoc extends Document {
   name: string;
   ownerName: string;
@@ -25,11 +25,11 @@ const vendorSchema = new Schema(
     password: { type: String, required: true },
     serviceAvailable: { type: Boolean },
     confirmEmail: { type: Boolean, default: false },
-    coverImages: { type: [String] },
+    profilePic: { type: String },
     rating: { type: Number },
     foods: [
       {
-        type: Types.ObjectId,
+        type: mongoose.SchemaTypes.ObjectId,
         ref: "food",
       },
     ],

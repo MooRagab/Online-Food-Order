@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { shopping } from "../controllers/shoppingController";
+import { getFoodAvailability } from "../controllers/shoppingController";
 
 const router = Router();
 
-router.get("/", shopping);
+router.get("/:pincode", getFoodAvailability);
 
 export { router as shoppingRoute };
