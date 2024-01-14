@@ -1,9 +1,13 @@
 import { Router } from "express";
-import { customer } from "../controllers";
+import { customerSignUp } from "../controllers";
 
 const router = Router();
 
-router.get("/", customer);
+/* ------------------- Suignup / Create Customer --------------------- */
+router.post("/signup" , customerSignUp)
+
+/* ------------------- Login --------------------- */
+
 
 export { router as customerRoute };
  

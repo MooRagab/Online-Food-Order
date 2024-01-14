@@ -8,17 +8,25 @@ interface CustomerDoc extends Document {
   address: string;
   phone: string;
   verified: boolean;
+  otp: number;
+  otp_expires: number;
+  lat: number;
+  lng: number;
 }
 
 const customerSchema = new Schema(
   {
-    email: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     firstName: { type: String },
     lastName: { type: String },
     address: { type: String },
-    phone: { type: String, required: true },
-    verified: { type: Boolean },
+    phone: { type: String, required: true, unique: true },
+    verified: { type: Boolean, default: false },
+    otp: {type: Number},
+    otp_expiry: {type: Date},
+    lat: {type: Number},
+    lng: {type: Number},
   },
   {
     toJSON: {
