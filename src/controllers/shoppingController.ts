@@ -90,3 +90,19 @@ export const searchFoods = async (
   }
   return res.status(404).json({ msg: "data Not found!" });
 };
+
+export const restaurantById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const { id } = req.params;
+
+  const result = await vendorModel.findById(id).populate("foods");
+
+  if (result) {
+    return res.status(200).json(result);
+  }
+
+  return res.status(404).json({ msg: "data Not found!" });
+};
