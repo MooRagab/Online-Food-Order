@@ -2,6 +2,8 @@ import { NextFunction, Request, Response } from "express";
 import vendorModel from "../DB/models/Vendor.model";
 import { FoodDoc } from "../DB/models";
 
+// ------------------------------------Food Availability--------------------------------------
+
 export const getFoodAvailability = async (
   req: Request,
   res: Response,
@@ -26,6 +28,8 @@ export const getFoodAvailability = async (
   }
 };
 
+// ------------------------------------Top Restaurants--------------------------------------
+
 export const getTopRestaurants = async (
   req: Request,
   res: Response,
@@ -45,6 +49,8 @@ export const getTopRestaurants = async (
     return res.status(404).json({ message: "Data Not Found!" });
   }
 };
+
+// ----------------------------------Foods In 30min------------------------------------
 
 export const getFoodsIn30Min = async (
   req: Request,
@@ -70,6 +76,8 @@ export const getFoodsIn30Min = async (
   return res.status(404).json({ message: "data Not found!" });
 };
 
+// ------------------------------------Search Foods--------------------------------------
+
 export const searchFoods = async (
   req: Request,
   res: Response,
@@ -91,18 +99,18 @@ export const searchFoods = async (
   return res.status(404).json({ msg: "data Not found!" });
 };
 
+// ------------------------------------Restaurant By Id--------------------------------------
+
 export const restaurantById = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
   const { id } = req.params;
-
   const result = await vendorModel.findById(id).populate("foods");
-
-  if (result) {
+  if (!result) { 
+    return res.status(404).json({ msg: "data Not found!" });
+  } else {
     return res.status(200).json(result);
   }
-
-  return res.status(404).json({ msg: "data Not found!" });
 };
