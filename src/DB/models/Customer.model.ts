@@ -18,8 +18,8 @@ const customerSchema = new Schema(
   {
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    firstName: { type: String },
-    lastName: { type: String },
+    firstName: { type: String , required: true },
+    lastName: { type: String , required: true},
     address: { type: String },
     phone: { type: String, required: true, unique: true },
     verified: { type: Boolean, default: false },

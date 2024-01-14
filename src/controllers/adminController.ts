@@ -1,21 +1,21 @@
 import { Request, Response } from "express";
-import {vendorModel} from "../DB/models";
+import { vendorModel } from "../DB/models";
 import bcrypt from "bcrypt";
 import { createVendorInput } from "../dto";
 import jwt from "jsonwebtoken";
-import sendEmail from "../services/Email";
+import {sendEmail} from "../services";
 
 export const createVendor = async (req: Request, res: Response) => {
   const {
     name,
     address,
     foodType,
-    email, 
+    email,
     pincode,
     password,
     ownerName,
     phone,
-  } = <createVendorInput>req.body; 
+  } = <createVendorInput>req.body;
 
   const vendor = await vendorModel.findOne({ email }).select("email");
   if (vendor) {

@@ -34,7 +34,7 @@ const vendorSchema = new Schema(
       },
     ],
   },
-  {
+  { 
     toJSON: {
       transform(doc, ret) {
         delete ret.__v;
