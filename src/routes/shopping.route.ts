@@ -5,7 +5,7 @@ import {
   getTopRestaurants,
   searchFoods,
   restaurantById,
-} from "../controllers/shoppingController";
+} from "../controllers";
 
 const router = Router();
 

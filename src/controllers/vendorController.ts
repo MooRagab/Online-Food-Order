@@ -1,9 +1,8 @@
 import bcrypt from "bcrypt";
 import { NextFunction, Request, Response } from "express";
 import { CreateFoodInput, VendorLoginInputs, editVendorInput } from "../dto";
-import vendorModel from "../DB/models/Vendor.model";
+import {vendorModel ,foodModel} from "../DB/models";
 import jwt from "jsonwebtoken";
-import foodModel from "../DB/models/Food.model";
 import Cloudinary from "../services/Cloudinary";
 
 export const vendor = async (req: Request, res: Response) => {

@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import vendorModel from "../DB/models/Vendor.model";
+import {vendorModel} from "../DB/models";
 import { FoodDoc } from "../DB/models";
 
 // ------------------------------------Food Availability--------------------------------------

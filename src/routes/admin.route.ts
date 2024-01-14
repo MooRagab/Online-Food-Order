@@ -5,7 +5,7 @@ import {
   getVendors,
   getVendorById,
   confirmEmail,
-} from "../controllers/adminController";
+} from "../controllers";
 
 const router = Router();
 

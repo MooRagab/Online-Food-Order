@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import vendorModel from "../DB/models/Vendor.model";
+import {vendorModel} from "../DB/models";
 import bcrypt from "bcrypt";
 import { createVendorInput } from "../dto";
 import jwt from "jsonwebtoken";

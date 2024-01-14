@@ -1,6 +1,6 @@
 import { Request, NextFunction, Response } from "express";
 import jwt from "jsonwebtoken";
-import vendorModel from "../DB/models/Vendor.model";
+import {vendorModel} from "../DB/models";
 import { VendorPayload } from "../dto";
 
 declare global {

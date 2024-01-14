@@ -8,7 +8,7 @@ import {
   addFood,
   getFood,
   addProfilePic,
-} from "../controllers/vendorController";
+} from "../controllers";
 import { auth } from "../middlewares";
 import { fileValidation, myMulter } from "../services/Multer";
 

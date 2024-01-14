@@ -48,4 +48,4 @@ const vendorSchema = new Schema(
 );
 
 const vendorModel = model<VendorDoc>("Vendor", vendorSchema);
-export default vendorModel;
+export { vendorModel };
