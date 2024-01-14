@@ -3,7 +3,6 @@ import vendorModel from "../DB/models/Vendor.model";
 import bcrypt from "bcrypt";
 import { createVendorInput } from "../dto";
 import jwt from "jsonwebtoken";
-import { nanoid } from "nanoid";
 import sendEmail from "../services/Email";
 
 export const createVendor = async (req: Request, res: Response) => {
@@ -11,7 +10,8 @@ export const createVendor = async (req: Request, res: Response) => {
     name,
     address,
     foodType,
-    email,
+    email, 
+    pincode,
     password,
     ownerName,
     phone,
@@ -26,7 +26,6 @@ export const createVendor = async (req: Request, res: Response) => {
       return res.status(409).json({ message: "Phone Number Is Already Used" });
     } else {
       const hash = bcrypt.hashSync(password, parseInt(process.env.SALTROUND));
-      const pincode = nanoid();
       const savedVendor = await vendorModel.create({
         email: email,
         name: name,
@@ -36,8 +35,6 @@ export const createVendor = async (req: Request, res: Response) => {
         ownerName: ownerName,
         phone: phone,
         password: hash,
-        rating: 0,
-        serviceAvailable: false,
         coverImages: [],
       });
       if (!savedVendor) {

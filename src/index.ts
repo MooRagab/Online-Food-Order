@@ -13,7 +13,7 @@ import {
   shoppingRoute,
   vendorRoute,
 } from "./routes/index.routes";
- 
+
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

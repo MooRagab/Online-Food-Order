@@ -1,4 +1,4 @@
-import mongoose,  { Schema, model,  Document } from "mongoose";
+import { Schema, model, Types, Document } from "mongoose";
 interface VendorDoc extends Document {
   name: string;
   ownerName: string;
@@ -18,27 +18,27 @@ const vendorSchema = new Schema(
   {
     name: { type: String, required: true },
     ownerName: { type: String, required: true },
-    pincode: { type: String},
+    pincode: { type: String, required: true },
     address: { type: String },
     phone: { type: String, required: true, unique: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    serviceAvailable: { type: Boolean },
+    serviceAvailable: { type: Boolean, default: false },
     confirmEmail: { type: Boolean, default: false },
     profilePic: { type: String },
-    rating: { type: Number },
+    rating: { type: Number, default: 0 },
     foods: [
       {
-        type: mongoose.SchemaTypes.ObjectId,
+        type: Types.ObjectId,
         ref: "Food",
       },
     ],
   },
   {
-    toJSON: { 
+    toJSON: {
       transform(doc, ret) {
         delete ret.__v;
-        delete ret.password; 
+        delete ret.password;
         delete ret.createdAt;
         delete ret.updatedAt;
       },
