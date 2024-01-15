@@ -3,7 +3,9 @@ import {
   confirmCustomerEmail,
   customerLogin,
   customerSignUp,
+  getCustomerProfile,
 } from "../controllers/customerController";
+import { auth } from "../middlewares";
 
 const router = Router();
 
@@ -15,5 +17,10 @@ router.get("/confirmemail/:token", confirmCustomerEmail);
 
 /* ------------------- Login --------------------- */
 router.post("/login", customerLogin);
+
+/* ------------------- Auth Middelware --------------------- */
+router.use(auth());
+/* ------------------- Customer profile --------------------- */
+router.post("/profile", getCustomerProfile);
 
 export { router as customerRoute };

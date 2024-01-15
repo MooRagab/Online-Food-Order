@@ -73,9 +73,8 @@ export const confirmCustomerEmail = async (req: Request, res: Response) => {
   }
 };
 
-
 export const customerLogin = async (req: Request, res: Response) => {
-  const { email, password } = req.body ;
+  const { email, password } = req.body;
   try {
     const user = await customerModel.findOne({ email });
     if (!user) {
@@ -99,5 +98,14 @@ export const customerLogin = async (req: Request, res: Response) => {
     }
   } catch (error) {
     res.status(500).json({ message: "Internal Server Error", error });
+  }
+};
+
+export const getCustomerProfile = async (req: Request, res: Response) => {
+  const customerProfile = await customerModel.findById(req.user._id);
+  if (!customerProfile) {
+    res.status(404).json({ message: "User Not Found" });
+  } else {
+    res.status(200).json({ message: customerProfile });
   }
 };
