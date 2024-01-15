@@ -1,6 +1,7 @@
 import { Router } from "express";
 import {
   confirmCustomerEmail,
+  customerLogin,
   customerSignUp,
 } from "../controllers/customerController";
 
@@ -13,5 +14,6 @@ router.post("/signup", customerSignUp);
 router.get("/confirmemail/:token", confirmCustomerEmail);
 
 /* ------------------- Login --------------------- */
+router.post("/login", customerLogin);
 
 export { router as customerRoute };

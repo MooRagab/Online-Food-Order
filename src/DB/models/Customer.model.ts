@@ -7,7 +7,7 @@ interface CustomerDoc extends Document {
   lastName: string;
   address: string;
   phone: string;
-  verified: boolean;
+  confirmEmail: boolean;
   otp: number;
   otp_expires: number;
   lat: number;
