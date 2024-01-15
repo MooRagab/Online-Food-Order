@@ -1,13 +1,17 @@
 import { Router } from "express";
-import { customerSignUp } from "../controllers";
+import {
+  confirmCustomerEmail,
+  customerSignUp,
+} from "../controllers/customerController";
 
 const router = Router();
 
 /* ------------------- Suignup / Create Customer --------------------- */
-router.post("/signup" , customerSignUp)
+router.post("/signup", customerSignUp);
+
+/* ------------------- Suignup / Create Customer --------------------- */
+router.get("/confirmemail/:token", confirmCustomerEmail);
 
 /* ------------------- Login --------------------- */
 
-
 export { router as customerRoute };
- 
