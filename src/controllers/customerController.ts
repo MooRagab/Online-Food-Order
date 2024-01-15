@@ -2,7 +2,8 @@ import { NextFunction, Request, Response } from "express";
 import { CreateCustomerInput } from "../dto";
 import { customerModel } from "../DB/models";
 import bcrypt from "bcrypt";
-import { GenerateOtp } from "../services";
+import { GenerateOtp, onRequestOTP, sendEmail } from "../services";
+import jwt from "jsonwebtoken";
 
 export const customerSignUp = async (
   req: Request,
@@ -12,7 +13,6 @@ export const customerSignUp = async (
   const { email, password, firstName, lastName, phone } = <CreateCustomerInput>(
     req.body
   );
-
   const customer = await customerModel.findOne({ email }).select("email");
   if (customer) {
     res.status(409).json({ message: "Email already exists" });
@@ -23,7 +23,7 @@ export const customerSignUp = async (
     if (customerPhone) {
       res.status(409).json({ message: "Phone is already used" });
     } else {
-      const hash = bcrypt.hashSync(password, parseInt(process.env.SALTROUND));
+      const hash = bcrypt.hashSync(password, parseInt(process.env.SALT_ROUND));
       const { otp, expiry } = GenerateOtp();
       const savedCustomer = await customerModel.create({
         email: email,
@@ -33,8 +33,22 @@ export const customerSignUp = async (
         phone: phone,
         otp: otp,
         otp_expires: expiry,
-        address: ''
+        address: "",
       });
+      if (!savedCustomer) {
+        res.status(400).json({ message: "Fail to Register, Please Try Again" });
+      } else {
+        await onRequestOTP(otp, phone);
+        const token = jwt.sign(
+          { id: savedCustomer._id },
+          process.env.EMAIL_TOKEN
+        );
+        const message = `
+      <a href = ${req.protocol}://${req.headers.host}/customer/confirmEmail/${token}>Confirm Email</a>
+      `;
+        await sendEmail(email, "confirmEmail", message);
+        res.status(201).json({ message: "Done!", savedCustomer });
+      }
     }
   }
 };

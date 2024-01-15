@@ -3,7 +3,7 @@ import { vendorModel } from "../DB/models";
 import bcrypt from "bcrypt";
 import { createVendorInput } from "../dto";
 import jwt from "jsonwebtoken";
-import {sendEmail} from "../services";
+import { sendEmail } from "../services";
 
 export const createVendor = async (req: Request, res: Response) => {
   const {
@@ -25,7 +25,7 @@ export const createVendor = async (req: Request, res: Response) => {
     if (vendorPhone) {
       return res.status(409).json({ message: "Phone Number Is Already Used" });
     } else {
-      const hash = bcrypt.hashSync(password, parseInt(process.env.SALTROUND));
+      const hash = bcrypt.hashSync(password, parseInt(process.env.SALT_ROUND));
       const savedVendor = await vendorModel.create({
         email: email,
         name: name,
