@@ -21,6 +21,6 @@ export interface VendorLoginInputs {
   password: string;
 }
 
-export interface VendorPayload {
+export interface Payload {
   _id: string;
 }

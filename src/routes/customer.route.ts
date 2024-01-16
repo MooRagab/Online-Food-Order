@@ -5,7 +5,7 @@ import {
   customerSignUp,
   getCustomerProfile,
 } from "../controllers/customerController";
-import { auth } from "../middlewares";
+import { customerAuth } from "../middlewares";
 
 const router = Router();
 
@@ -19,7 +19,7 @@ router.get("/confirmemail/:token", confirmCustomerEmail);
 router.post("/login", customerLogin);
 
 /* ------------------- Auth Middelware --------------------- */
-router.use(auth());
+router.use(customerAuth());
 /* ------------------- Customer profile --------------------- */ 
 router.post("/profile", getCustomerProfile);
 
