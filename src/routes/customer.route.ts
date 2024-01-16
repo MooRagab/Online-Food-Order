@@ -23,9 +23,9 @@ router.post("/login", customerLogin);
 router.use(customerAuth());
 
 /* ------------------- Customer profile --------------------- */
-router.post("/profile", getCustomerProfile);
+router.get("/profile", getCustomerProfile);
 
 /* ------------------- Edit Customer profile --------------------- */
-router.post("/editprofile", editCustomerProfile);
+router.patch("/editprofile", editCustomerProfile);
 
 export { router as customerRoute };

@@ -9,6 +9,7 @@ interface VendorDoc extends Document {
   password: string;
   serviceAvailable: boolean;
   coverImages: [string];
+  foodType: [string];
   confirmEmail: { type: Boolean; default: false };
   rating: number;
   foods: any;
@@ -18,6 +19,7 @@ const vendorSchema = new Schema(
   {
     name: { type: String, required: true },
     ownerName: { type: String, required: true },
+    foodType: { type: [String] },
     pincode: { type: String, required: true },
     address: { type: String },
     phone: { type: String, required: true, unique: true },

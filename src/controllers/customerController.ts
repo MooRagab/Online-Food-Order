@@ -126,7 +126,7 @@ export const editCustomerProfile = async (req: Request, res: Response) => {
         { _id: req.user._id },
         { firstName, lastName, address }
       );
-      res.status(200).json({ message: "Done !" });
+      res.status(200).json({ message: "Done !", customer });
     }
   }
 };
