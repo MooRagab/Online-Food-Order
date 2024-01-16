@@ -3,6 +3,7 @@ import {
   confirmCustomerEmail,
   customerLogin,
   customerSignUp,
+  editCustomerProfile,
   getCustomerProfile,
 } from "../controllers/customerController";
 import { customerAuth } from "../middlewares";
@@ -20,7 +21,11 @@ router.post("/login", customerLogin);
 
 /* ------------------- Auth Middelware --------------------- */
 router.use(customerAuth());
-/* ------------------- Customer profile --------------------- */ 
+
+/* ------------------- Customer profile --------------------- */
 router.post("/profile", getCustomerProfile);
+
+/* ------------------- Edit Customer profile --------------------- */
+router.post("/editprofile", editCustomerProfile);
 
 export { router as customerRoute };

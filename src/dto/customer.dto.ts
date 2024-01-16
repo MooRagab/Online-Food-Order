@@ -11,7 +11,7 @@ export class CreateCustomerInput {
   password: string;
 
   firstName: string;
-  
+
   lastName: string;
 }
 
@@ -20,5 +20,12 @@ export class UserLoginInput {
   email: string;
 
   @Length(6, 12)
+  password: string;
+}
+
+export class editCustomerProfileInput {
+  firstName: string;
+  address: string;
+  lastName: string;
   password: string;
 }

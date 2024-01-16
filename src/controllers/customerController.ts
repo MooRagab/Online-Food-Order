@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { CreateCustomerInput } from "../dto";
+import { CreateCustomerInput, editCustomerProfileInput } from "../dto";
 import { customerModel } from "../DB/models";
 import bcrypt from "bcrypt";
 import { GenerateOtp, sendEmail } from "../services";
@@ -107,5 +107,26 @@ export const getCustomerProfile = async (req: Request, res: Response) => {
     res.status(404).json({ message: "User Not Found" });
   } else {
     res.status(200).json({ message: customerProfile });
+  }
+};
+
+export const editCustomerProfile = async (req: Request, res: Response) => {
+  const { firstName, lastName, address, password } = <editCustomerProfileInput>(
+    req.body
+  );
+  const customer = await customerModel.findById(req.user._id);
+  if (!customer) {
+    res.status(404).json({ message: "User Not Found" });
+  } else {
+    const match = bcrypt.compareSync(password, customer.password);
+    if (!match) {
+      res.status(401).json({ message: "Wrong Password" });
+    } else {
+      await customerModel.updateMany(
+        { _id: req.user._id },
+        { firstName, lastName, address }
+      );
+      res.status(200).json({ message: "Done !" });
+    }
   }
 };
