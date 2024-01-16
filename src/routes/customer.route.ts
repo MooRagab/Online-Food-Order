@@ -20,7 +20,7 @@ router.post("/login", customerLogin);
 
 /* ------------------- Auth Middelware --------------------- */
 router.use(auth());
-/* ------------------- Customer profile --------------------- */
+/* ------------------- Customer profile --------------------- */ 
 router.post("/profile", getCustomerProfile);
 
 export { router as customerRoute };

@@ -1,6 +1,6 @@
 import { Request, NextFunction, Response } from "express";
 import jwt from "jsonwebtoken";
-import {vendorModel , customerModel} from "../DB/models";
+import { customerModel, vendorModel } from "../DB/models";
 import { VendorPayload } from "../dto";
 
 declare global {
@@ -23,9 +23,9 @@ export const auth = () => {
         if (!decoded?.id) {
           res.status(400).json({ message: "Invalid token payload" });
         } else {
-          const user = await vendorModel
+          const user = await (vendorModel && customerModel)
             .findById(decoded.id)
-            .select("name email foodType");
+            .select("email");
           if (!user) {
             res.status(401).json({ message: "Not Register User" });
           } else {
