@@ -5,9 +5,7 @@ import {vendorModel ,foodModel} from "../DB/models";
 import jwt from "jsonwebtoken";
 import Cloudinary from "../services/Cloudinary";
 
-export const vendor = async (req: Request, res: Response) => {
-  res.json({ message: "Hello from Vendor" });
-};
+
 
 // ------------------------------------LogIn Function--------------------------------------
 

@@ -13,7 +13,7 @@ import { customerAuth } from "../middlewares";
 
 const router = Router();
 
-/* ------------------- Suignup / Create Customer --------------------- */
+/* ------------------- Signup / Create Customer --------------------- */
 router.post("/signup", customerSignUp);
 
 /* ------------------- Suignup / Create Customer --------------------- */

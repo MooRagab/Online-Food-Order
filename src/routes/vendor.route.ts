@@ -1,7 +1,6 @@
 import { Router } from "express";
 import {
   vendorLogin,
-  vendor,
   getVendorProfile,
   updateVendorProfile,
   updateVendorService,
@@ -14,16 +13,28 @@ import { fileValidation, myMulter } from "../services/Multer";
 
 const router = Router();
 
-router.get("/", vendor);
+/* -------------------LogIn Vendor--------------------- */
 router.post("/login", vendorLogin);
 
-router.use(auth());                 // Auth Middleware
+/* -------------------Auth Middelware--------------------- */
+router.use(auth());
 
+/* -------------------Get Vendor Profile--------------------- */
 router.get("/vendorProfile", getVendorProfile);
+
+/* -------------------Update Vendor Profile--------------------- */
 router.patch("/updatevendorprofile", updateVendorProfile);
+
+/* -------------------Get Food--------------------- */
 router.get("/vendorfood", getFood);
+
+/* -------------------Update Vendor Service--------------------- */
 router.patch("/service", updateVendorService);
+
+/* -------------------Add Food--------------------- */
 router.post("/addfood", myMulter(fileValidation).array("images", 5), addFood);
+
+/* -------------------Put Profile Picture--------------------- */
 router.post(
   "/profilepic",
   myMulter(fileValidation).single("image"),

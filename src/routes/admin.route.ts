@@ -9,13 +9,18 @@ import {
 
 const router = Router();
 
+/* ------------------- Signup / Create Vendor --------------------- */
 router.post("/vendor", createVendor);
+
+/* ------------------- Get Vendors --------------------- */
 router.get("/vendors", getVendors);
+
+/* ------------------- Get Vendor By ID --------------------- */
 router.get("/vendor/:id", getVendorById);
+
+/* ------------------- Confirm Email --------------------- */
 router.get("/confirmEmail/:token", confirmEmail);
 
-router.get("/", (req: Request, res: Response, next: NextFunction) => {
-  res.json({ message: "Hello from Admin" });
-});
+
 
 export { router as adminRoute };
