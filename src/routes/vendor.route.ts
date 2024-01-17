@@ -8,6 +8,8 @@ import {
   getFood,
   addProfilePic,
   getCurrentOrders,
+  getOrderDetails,
+  processOrder,
 } from "../controllers";
 import { auth } from "../middlewares";
 import { fileValidation, myMulter } from "../services/Multer";
@@ -41,10 +43,11 @@ router.post(
   myMulter(fileValidation).single("image"),
   addProfilePic
 );
-
+  
 //ORDERS
 router.get("/orders", getCurrentOrders);
-router.put("/order/:id/process");
-router.get("/order/:id");
+router.put("/order/:id/process", processOrder);
+router.get("/order/:id", getOrderDetails);
 
 export { router as vendorRoute };
+ 

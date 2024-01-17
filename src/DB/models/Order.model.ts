@@ -22,8 +22,8 @@ const OrderSchema = new Schema(
     vendorId: { type: String, require: true },
     items: [
       {
-        food: { type: Schema.Types.ObjectId, ref: "food", require: true },
-        unit: { type: Number, require: true },
+        food: { type: Schema.Types.ObjectId, ref: "Food", require: true },
+        unit: { type: Number, require: true }, 
       },
     ],
     totalAmount: { type: Number, require: true },
