@@ -14,6 +14,7 @@ interface CustomerDoc extends Document {
   lat: number;
   lng: number;
   orders: [OrderDoc];
+  cart: [any];
 }
 
 const customerSchema = new Schema(
@@ -27,6 +28,12 @@ const customerSchema = new Schema(
     confirmEmail: { type: Boolean, default: false },
     lat: { type: Number },
     lng: { type: Number },
+    cart: [
+      {
+        food: { type: Schema.Types.ObjectId, ref: "Food" },
+        unit: { type: Number, require: true },
+      },
+    ],
     orders: [
       {
         type: Schema.Types.ObjectId,

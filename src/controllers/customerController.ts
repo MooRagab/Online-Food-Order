@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import {
+  CartItem,
   CreateCustomerInput,
   OrderInputs,
   editCustomerProfileInput,
@@ -136,6 +137,58 @@ export const editCustomerProfile = async (req: Request, res: Response) => {
   }
 };
 
+export const addToCart = async (req: Request, res: Response) => {
+  const customer = req.user;
+
+  if (customer) {
+    const profile = await customerModel.findById(customer._id);
+    let cartItems = Array();
+
+    const { _id, unit } = <CartItem>req.body;
+
+    const food = await foodModel.findById(_id);
+
+    if (food) {
+      if (profile != null) {
+        cartItems = profile.cart;
+
+        if (cartItems.length > 0) {
+          // check and update
+          let existFoodItems = cartItems.filter(
+            (item) => item.food._id.toString() === _id
+          );
+          if (existFoodItems.length > 0) {
+            const index = cartItems.indexOf(existFoodItems[0]);
+
+            if (unit > 0) {
+              cartItems[index] = { food, unit };
+            } else {
+              cartItems.splice(index, 1);
+            }
+          } else {
+            cartItems.push({ food, unit });
+          }
+        } else {
+          // add new Item
+          cartItems.push({ food, unit });
+        }
+
+        if (cartItems) {
+          profile.cart = cartItems as any;
+          const cartResult = await profile.save();
+          return res.status(200).json(cartResult.cart);
+        }
+      }
+    }
+  }
+
+  return res.status(404).json({ msg: "Unable to add to cart!" });
+};
+
+export const getCart = async (req: Request, res: Response) => {};
+
+export const deleteCart = async (req: Request, res: Response) => {};
+
 export const createOrder = async (req: Request, res: Response) => {
   const customer = req.user;
   if (customer) {
@@ -202,4 +255,3 @@ export const getOrderById = async (req: Request, res: Response) => {
 
   return res.status(404).json({ msg: "Order not found" });
 };
-  

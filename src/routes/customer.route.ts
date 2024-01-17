@@ -4,10 +4,13 @@ import {
   createOrder,
   customerLogin,
   customerSignUp,
+  deleteCart,
   editCustomerProfile,
+  getCart,
   getCustomerProfile,
   getOrderById,
   getOrders,
+  addToCart,
 } from "../controllers/customerController";
 import { customerAuth } from "../middlewares";
 
@@ -31,6 +34,15 @@ router.get("/profile", getCustomerProfile);
 /* ------------------- Edit Customer profile --------------------- */
 router.patch("/editprofile", editCustomerProfile);
 
+//CART
+/* ------------------- Add To Your Cart --------------------- */
+router.post("/cart", addToCart);
+/* ------------------- Get Cart --------------------- */
+router.get("/cart", getCart);
+/* ------------------- Delete Cart --------------------- */
+router.delete("/cart", deleteCart);
+
+//ORDER
 /* ------------------- Create Order --------------------- */
 router.post("/createorder", createOrder);
 
