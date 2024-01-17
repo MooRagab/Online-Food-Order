@@ -173,3 +173,33 @@ export const createOrder = async (req: Request, res: Response) => {
   }
   return res.status(400).json({ message: "Error With Create Order" });
 };
+
+export const getOrders = async (req: Request, res: Response) => {
+  const customer = req.user;
+
+  if (customer) {
+    const profile = await customerModel
+      .findById(customer._id)
+      .populate("orders");
+    if (profile) {
+      return res.status(200).json(profile.orders);
+    }
+  }
+
+  return res.status(404).json({ msg: "Orders not found" });
+};
+
+export const getOrderById = async (req: Request, res: Response) => {
+  const {orderId} = req.params;
+
+  if (orderId) {
+    const order = await customerModel.findById(orderId).populate("items.food");
+
+    if (order) {
+      return res.status(200).json(order);
+    }
+  }
+
+  return res.status(404).json({ msg: "Order not found" });
+};
+  
