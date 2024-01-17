@@ -38,6 +38,6 @@ router.post("/createorder", createOrder);
 router.get("/orders", getOrders);
 
 /* ------------------- Get Order By ID --------------------- */
-router.get("/order/:orderId", getOrderById);
+router.get("/order/:id", getOrderById);
 
 export { router as customerRoute };

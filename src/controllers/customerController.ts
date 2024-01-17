@@ -190,10 +190,10 @@ export const getOrders = async (req: Request, res: Response) => {
 };
 
 export const getOrderById = async (req: Request, res: Response) => {
-  const {orderId} = req.params;
+  const orderId = req.params.id;
 
   if (orderId) {
-    const order = await customerModel.findById(orderId).populate("items.food");
+    const order = await orderModel.findById(orderId).populate("items");
 
     if (order) {
       return res.status(200).json(order);
