@@ -7,6 +7,7 @@ import {
   addFood,
   getFood,
   addProfilePic,
+  getCurrentOrders,
 } from "../controllers";
 import { auth } from "../middlewares";
 import { fileValidation, myMulter } from "../services/Multer";
@@ -40,5 +41,10 @@ router.post(
   myMulter(fileValidation).single("image"),
   addProfilePic
 );
+
+//ORDERS
+router.get("/orders", getCurrentOrders);
+router.put("/order/:id/process");
+router.get("/order/:id");
 
 export { router as vendorRoute };

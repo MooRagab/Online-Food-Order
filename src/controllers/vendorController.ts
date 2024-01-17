@@ -1,11 +1,9 @@
 import bcrypt from "bcrypt";
 import { NextFunction, Request, Response } from "express";
 import { CreateFoodInput, VendorLoginInputs, editVendorInput } from "../dto";
-import {vendorModel ,foodModel} from "../DB/models";
+import { vendorModel, foodModel, orderModel } from "../DB/models";
 import jwt from "jsonwebtoken";
 import Cloudinary from "../services/Cloudinary";
-
-
 
 // ------------------------------------LogIn Function--------------------------------------
 
@@ -168,3 +166,18 @@ export const getFood = async (req: Request, res: Response) => {
   }
 };
 
+export const getCurrentOrders = async (req: Request, res: Response) => {
+  const user = req.user;
+
+  if (user) {
+    const orders = await orderModel
+      .find({ vendorId: user._id })
+      .populate("items.food");
+
+    if (orders != null) {
+      return res.status(200).json(orders);
+    }
+  }
+
+  return res.json({ message: "Orders Not found" });
+};
