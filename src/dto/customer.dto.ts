@@ -29,3 +29,8 @@ export class editCustomerProfileInput {
   lastName: string;
   password: string;
 }
+
+export class OrderInputs {
+  _id: string;
+  unit: number;
+}

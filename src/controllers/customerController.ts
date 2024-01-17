@@ -1,6 +1,10 @@
 import { NextFunction, Request, Response } from "express";
-import { CreateCustomerInput, editCustomerProfileInput } from "../dto";
-import { customerModel } from "../DB/models";
+import {
+  CreateCustomerInput,
+  OrderInputs,
+  editCustomerProfileInput,
+} from "../dto";
+import { customerModel, foodModel, orderModel } from "../DB/models";
 import bcrypt from "bcrypt";
 import { GenerateOtp, sendEmail } from "../services";
 import jwt from "jsonwebtoken";
@@ -24,7 +28,7 @@ export const customerSignUp = async (
       res.status(409).json({ message: "Phone is already used" });
     } else {
       const hash = bcrypt.hashSync(password, parseInt(process.env.SALT_ROUND));
-      const { otp, expiry } = GenerateOtp();
+
       const savedCustomer = await customerModel.create({
         email: email,
         password: hash,
@@ -32,6 +36,7 @@ export const customerSignUp = async (
         lastName: lastName,
         phone: phone,
         address: "",
+        orders: [],
       });
       if (!savedCustomer) {
         res.status(400).json({ message: "Fail to Register, Please Try Again" });
@@ -129,4 +134,42 @@ export const editCustomerProfile = async (req: Request, res: Response) => {
       res.status(200).json({ message: "Done !", customer });
     }
   }
+};
+
+export const createOrder = async (req: Request, res: Response) => {
+  const customer = req.user;
+  if (customer) {
+    const orderId = `${Math.floor(Math.random() * 89999) + 1000}`;
+    const profile = await customerModel.findById(customer._id);
+    const cart = <[OrderInputs]>req.body;
+    let cartItems = Array();
+    let netAmount = 0.0;
+    const foods = await foodModel
+      .find()
+      .where("_id")
+      .in(cart.map((item) => item._id))
+      .exec();
+
+    foods.map((food) => {
+      cart.map(({ _id, unit }) => {
+        if (food._id == _id) {
+          netAmount += food.price * unit;
+          cartItems.push({ food, unit });
+        }
+      });
+    });
+    if (cartItems) {
+      const currentOrder = await orderModel.create({
+        orderId: orderId,
+        items: cartItems,
+        totalAmount: netAmount,
+      });
+      if (currentOrder) {
+        profile.orders.push(currentOrder);
+        const profileResponse = await profile.save();
+        return res.status(200).json(profileResponse);
+      }
+    }
+  }
+  return res.status(400).json({ message: "Error With Create Order" });
 };

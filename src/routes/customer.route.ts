@@ -1,6 +1,7 @@
 import { Router } from "express";
 import {
   confirmCustomerEmail,
+  createOrder,
   customerLogin,
   customerSignUp,
   editCustomerProfile,
@@ -27,5 +28,8 @@ router.get("/profile", getCustomerProfile);
 
 /* ------------------- Edit Customer profile --------------------- */
 router.patch("/editprofile", editCustomerProfile);
+
+/* ------------------- Create Order --------------------- */
+router.post("/order", createOrder);
 
 export { router as customerRoute };
