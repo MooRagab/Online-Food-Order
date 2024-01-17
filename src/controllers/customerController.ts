@@ -10,6 +10,8 @@ import bcrypt from "bcrypt";
 import { GenerateOtp, sendEmail } from "../services";
 import jwt from "jsonwebtoken";
 
+//-----------------------------------Customer Section---------------------------------
+
 export const customerSignUp = async (
   req: Request,
   res: Response,
@@ -137,6 +139,8 @@ export const editCustomerProfile = async (req: Request, res: Response) => {
   }
 };
 
+//--------------------------------------Cart Section----------------------------------
+
 export const addToCart = async (req: Request, res: Response) => {
   const customer = req.user;
 
@@ -185,9 +189,23 @@ export const addToCart = async (req: Request, res: Response) => {
   return res.status(404).json({ msg: "Unable to add to cart!" });
 };
 
-export const getCart = async (req: Request, res: Response) => {};
+export const getCart = async (req: Request, res: Response) => {
+  const customer = req.user;
+
+  if (customer) {
+    const profile = await customerModel.findById(customer._id);
+
+    if (profile) {
+      return res.status(200).json(profile.cart);
+    }
+  }
+
+  return res.status(400).json({ message: "Cart is Empty!" });
+};
 
 export const deleteCart = async (req: Request, res: Response) => {};
+
+//-----------------------------------Order Section---------------------------------
 
 export const createOrder = async (req: Request, res: Response) => {
   const customer = req.user;
