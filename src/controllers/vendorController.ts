@@ -166,6 +166,8 @@ export const getFood = async (req: Request, res: Response) => {
   }
 };
 
+// ------------------------------------Get Current Order--------------------------------------
+
 export const getCurrentOrders = async (req: Request, res: Response) => {
   const user = req.user;
 
@@ -181,6 +183,8 @@ export const getCurrentOrders = async (req: Request, res: Response) => {
   return res.status(404).json({ message: "Orders Not found" });
 };
 
+// ------------------------------------Get Order Details--------------------------------------
+
 export const getOrderDetails = async (req: Request, res: Response) => {
   const orderId = req.params.id;
 
@@ -194,6 +198,8 @@ export const getOrderDetails = async (req: Request, res: Response) => {
     }
   }
 };
+
+// ------------------------------------Edits On Order--------------------------------------
 
 export const processOrder = async (req: Request, res: Response) => {
   const orderId = req.params.id;

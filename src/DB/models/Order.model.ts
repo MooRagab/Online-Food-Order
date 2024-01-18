@@ -23,7 +23,7 @@ const OrderSchema = new Schema(
     items: [
       {
         food: { type: Schema.Types.ObjectId, ref: "Food", require: true },
-        unit: { type: Number, require: true }, 
+        unit: { type: Number, require: true },
       },
     ],
     totalAmount: { type: Number, require: true },
@@ -33,9 +33,9 @@ const OrderSchema = new Schema(
     paidThrough: { type: String, default: "COD" },
     remarks: { type: String },
     deliveryId: { type: String },
-    readyTime: { type: Number },
-    offerId: { type: String },
-    appliedOffers: { type: Boolean },
+    readyTime: { type: Number, default: 45 },
+    offerId: { type: String, default: null },
+    appliedOffers: { type: Boolean, default: false },
   },
   {
     toJSON: {

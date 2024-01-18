@@ -195,7 +195,7 @@ export const getCart = async (req: Request, res: Response) => {
   if (customer) {
     const profile = await customerModel.findById(customer._id);
 
-    if (profile) { 
+    if (profile) {
       return res.status(200).json(profile.cart);
     }
   }
@@ -233,6 +233,7 @@ export const createOrder = async (req: Request, res: Response) => {
     const cart = <[OrderInputs]>req.body;
     let cartItems = Array();
     let netAmount = 0.0;
+    let vendorId;
     const foods = await foodModel
       .find()
       .where("_id")
@@ -242,6 +243,7 @@ export const createOrder = async (req: Request, res: Response) => {
     foods.map((food) => {
       cart.map(({ _id, unit }) => {
         if (food._id == _id) {
+          vendorId = food.vendorId;
           netAmount += food.price * unit;
           cartItems.push({ food, unit });
         }
@@ -249,11 +251,15 @@ export const createOrder = async (req: Request, res: Response) => {
     });
     if (cartItems) {
       const currentOrder = await orderModel.create({
+        vendorId: vendorId,
         orderId: orderId,
         items: cartItems,
         totalAmount: netAmount,
+        remarks: "",
+        deliveryId: "",
       });
       if (currentOrder) {
+        profile.cart = [] as any;
         profile.orders.push(currentOrder);
         const profileResponse = await profile.save();
         return res.status(200).json(profileResponse);
