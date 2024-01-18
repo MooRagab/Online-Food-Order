@@ -318,4 +318,51 @@ export const getOffers = async (req: Request, res: Response) => {
 
 // ------------------------------------Edits Offers--------------------------------------
 
-export const editOffer = async (req: Request, res: Response) => {};
+export const editOffer = async (req: Request, res: Response) => {
+  const user = req.user;
+  const offerId = req.params.id;
+
+  if (user) {
+    const {
+      title,
+      description,
+      offerType,
+      offerAmount,
+      pincode,
+      promocode,
+      promoType,
+      startValidity,
+      endValidity,
+      bank,
+      bins,
+      minValue,
+      isActive,
+    } = <CreateOfferInputs>req.body;
+
+    const currentOffer = await offerModel.findById(offerId);
+
+    if (currentOffer) {
+      const vendor = await vendorModel.findById(user._id);
+
+      if (vendor) {
+        (currentOffer.title = title),
+          (currentOffer.description = description),
+          (currentOffer.offerType = offerType),
+          (currentOffer.offerAmount = offerAmount),
+          (currentOffer.pincode = pincode),
+          (currentOffer.promoType = promoType),
+          (currentOffer.startValidity = startValidity),
+          (currentOffer.endValidity = endValidity),
+          (currentOffer.bank = bank),
+          (currentOffer.isActive = isActive),
+          (currentOffer.minValue = minValue);
+
+        const result = await currentOffer.save();
+
+        return res.status(200).json(result);
+      }
+    }
+  }
+
+  return res.json({ message: "Unable to add Offer!" });
+};
