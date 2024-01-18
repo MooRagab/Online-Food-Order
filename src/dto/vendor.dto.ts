@@ -35,9 +35,6 @@ export interface CreateOfferInputs {
   startValidity: Date;
   endValidity: Date;
   promocode: string;
-  promoType: string;
-  bank: [any];
-  bins: [any];
   pincode: string;
   isActive: boolean;
 }

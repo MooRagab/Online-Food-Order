@@ -38,11 +38,11 @@ router.post(
   "/profilepic",
   myMulter(fileValidation).single("image"),
   addProfilePic
-);
+); 
 
 //ORDERS
 router.get("/orders", getCurrentOrders);
-router.put("/order/:id/process", processOrder);
+router.put("/order/:id/process", processOrder); 
 router.get("/order/:id", getOrderDetails);
 
 //OFFERS
