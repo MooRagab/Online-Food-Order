@@ -5,10 +5,16 @@ import {
   OrderInputs,
   editCustomerProfileInput,
 } from "../dto";
-import { customerModel, foodModel, orderModel } from "../DB/models";
+import {
+  customerModel,
+  foodModel,
+  orderModel,
+  transactionModel,
+} from "../DB/models";
 import bcrypt from "bcrypt";
 import { GenerateOtp, sendEmail } from "../services";
 import jwt from "jsonwebtoken";
+import { offerModel } from "../DB/models/Offer.model";
 
 //-----------------------------------Customer Section---------------------------------
 
@@ -296,4 +302,58 @@ export const getOrderById = async (req: Request, res: Response) => {
   }
 
   return res.status(404).json({ msg: "Order not found" });
+};
+
+//-----------------------------------Offers Section---------------------------------
+
+export const verifyOffer = async (req: Request, res: Response) => {
+  const offerId = req.params.id;
+  const customer = req.user;
+
+  if (customer) {
+    const appliedOffer = await offerModel.findById(offerId);
+
+    if (appliedOffer) {
+      if (appliedOffer.isActive) {
+        return res
+          .status(200)
+          .json({ message: "Offer is Valid", offer: appliedOffer });
+      }
+    }
+  }
+
+  return res.status(400).json({ msg: "Offer is Not Valid" });
+};
+
+//-----------------------------------Payment Section---------------------------------
+
+export const createPayment = async (req: Request, res: Response) => {
+  const customer = req.user;
+
+  const { amount, paymentMode, offerId } = req.body;
+
+  let payableAmount = Number(amount);
+  if (offerId) {
+    const appliedOffer = await offerModel.findById(offerId);
+
+    if (appliedOffer.isActive) {
+      payableAmount = payableAmount - appliedOffer.offerAmount;
+    }
+  }
+  // perform payment gateway charge api
+
+  // create record on transaction
+  const transaction = await transactionModel.create({
+    customer: customer._id,
+    vendorId: "",
+    orderId: "",
+    orderValue: payableAmount,
+    offerUsed: offerId || "EGY",
+    status: "OPEN",
+    paymentMode: paymentMode,
+    paymentResponse: "Payment is cash on Delivery",
+  });
+
+  //return transaction
+  return res.status(200).json(transaction);
 };

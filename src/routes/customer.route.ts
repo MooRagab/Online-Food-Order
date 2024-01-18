@@ -11,26 +11,24 @@ import {
   getOrderById,
   getOrders,
   addToCart,
+  verifyOffer,
+  createPayment,
 } from "../controllers/customerController";
 import { customerAuth } from "../middlewares";
 
 const router = Router();
 
+//CUSTOMER
 /* ------------------- Signup / Create Customer --------------------- */
 router.post("/signup", customerSignUp);
-
 /* ------------------- Suignup / Create Customer --------------------- */
 router.get("/confirmemail/:token", confirmCustomerEmail);
-
 /* ------------------- Login --------------------- */
 router.post("/login", customerLogin);
-
 /* ------------------- Auth Middelware --------------------- */
 router.use(customerAuth());
-
 /* ------------------- Customer profile --------------------- */
 router.get("/profile", getCustomerProfile);
-
 /* ------------------- Edit Customer profile --------------------- */
 router.patch("/editprofile", editCustomerProfile);
 
@@ -45,11 +43,15 @@ router.delete("/cart", deleteCart);
 //ORDER
 /* ------------------- Create Order --------------------- */
 router.post("/createorder", createOrder);
-
 /* ------------------- Get Order --------------------- */
 router.get("/orders", getOrders);
-
 /* ------------------- Get Order By ID --------------------- */
 router.get("/order/:id", getOrderById);
+
+//OFFERS
+router.get("/offer/verify/:id", verifyOffer);
+
+//PAYMENT
+router.post("/create-payment", createPayment);
 
 export { router as customerRoute };
