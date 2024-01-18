@@ -1,9 +1,15 @@
 import bcrypt from "bcrypt";
 import { NextFunction, Request, Response } from "express";
-import { CreateFoodInput, VendorLoginInputs, editVendorInput } from "../dto";
+import {
+  CreateFoodInput,
+  CreateOfferInputs,
+  VendorLoginInputs,
+  editVendorInput,
+} from "../dto";
 import { vendorModel, foodModel, orderModel } from "../DB/models";
 import jwt from "jsonwebtoken";
 import Cloudinary from "../services/Cloudinary";
+import { offerModel } from "../DB/models/Offer.model";
 
 // ------------------------------------LogIn Function--------------------------------------
 
@@ -166,6 +172,8 @@ export const getFood = async (req: Request, res: Response) => {
   }
 };
 
+//ORDERS
+
 // ------------------------------------Get Current Order--------------------------------------
 
 export const getCurrentOrders = async (req: Request, res: Response) => {
@@ -224,3 +232,90 @@ export const processOrder = async (req: Request, res: Response) => {
 
   return res.json({ message: "Unable to process order" });
 };
+
+//OFFERS
+
+// ------------------------------------Add Offer--------------------------------------
+
+export const addOffer = async (req: Request, res: Response) => {
+  const user = req.user;
+
+  if (user) {
+    const {
+      title,
+      description,
+      offerType,
+      offerAmount,
+      pincode,
+      promocode,
+      promoType,
+      startValidity,
+      endValidity,
+      bank,
+      bins,
+      minValue,
+      isActive,
+    } = <CreateOfferInputs>req.body;
+
+    const vendor = await vendorModel.findById(user._id);
+
+    if (vendor) {
+      const offer = await offerModel.create({
+        title,
+        description,
+        offerType,
+        offerAmount,
+        pincode,
+        promoType,
+        startValidity,
+        endValidity,
+        bank,
+        isActive,
+        minValue,
+        vendor: [vendor],
+      });
+
+      console.log(offer);
+
+      return res.status(200).json(offer);
+    }
+  }
+
+  return res.json({ message: "Unable to add Offer!" });
+};
+
+// ------------------------------------Get Offers--------------------------------------
+
+export const getOffers = async (req: Request, res: Response) => {
+  const user = req.user;
+
+  if (user) {
+    let currentOffer = Array();
+
+    const offers = await offerModel.find().populate("vendors");
+
+    if (offers) {
+      offers.map((item) => {
+        if (item.vendors) {
+          item.vendors.map((vendor) => {
+            if (vendor._id.toString() === user._id) {
+              currentOffer.push(item);
+            }
+          });
+        }
+
+        if (item.offerType === "GENERIC") {
+          currentOffer.push(item);
+        }
+      });
+    }
+
+    return res.status(200).json(currentOffer);
+  }
+
+  return res.json({ message: "Offers Not available" });
+};
+
+// ------------------------------------Edits Offers--------------------------------------
+
+export const editOffer = async (req: Request, res: Response) => {};
