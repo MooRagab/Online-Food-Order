@@ -37,8 +37,8 @@ const vendorSchema = new Schema(
         ref: "Food",
       },
     ],
-    lat: Number,
-    lng: Number,
+    lat: { type: Number, default: 0 },
+    lng: { type: Number, default: 0 },
   },
   {
     toJSON: {

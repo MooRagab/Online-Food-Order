@@ -97,16 +97,30 @@ export const addProfilePic = async (req: Request, res: Response) => {
 };
 // ------------------------------------Update Vednor Service--------------------------------------
 
-export const updateVendorService = async (req: Request, res: Response) => {
-  const vendorService = await vendorModel.findByIdAndUpdate(
-    { _id: req.user._id },
-    { serviceAvailable: true }
-  );
-  if (!vendorService) {
-    res.status(404).json({ message: "vendor not found" });
-  } else {
-    res.status(200).json({ message: "Done !" });
+export const updateVendorService = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const user = req.user;
+
+  const { lat, lng } = req.body;
+
+  if (user) {
+    const existingVendor = await vendorModel.findById(user._id);
+
+    if (existingVendor !== null) {
+      existingVendor.serviceAvailable = !existingVendor.serviceAvailable;
+      if (lat && lng) {
+        existingVendor.lat = lat;
+        existingVendor.lng = lng;
+      }
+      const saveResult = await existingVendor.save();
+
+      return res.json(saveResult);
+    }
   }
+  return res.json({ message: "Unable to Update vendor profile " });
 };
 
 // ------------------------------------Add Food--------------------------------------
