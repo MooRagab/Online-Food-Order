@@ -2,6 +2,7 @@ import { Router } from "express";
 import { deliveryAuth } from "../middlewares";
 import {
   confirmEmail,
+  deliveryLogin,
   deliverySignUp,
 } from "../controllers/deliveryController";
 
@@ -14,7 +15,7 @@ router.post("/signup", deliverySignUp);
 router.get("/confirmEmail/:token", confirmEmail);
 
 // /* ------------------- Login --------------------- */
-// router.post("/login", deliveryLogin);
+router.post("/login", deliveryLogin);
 
 // /* ------------------- Authentication --------------------- */
 router.use(deliveryAuth());
