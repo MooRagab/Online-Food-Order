@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { vendorModel } from "../DB/models";
+import { transactionModel, vendorModel } from "../DB/models";
 import bcrypt from "bcrypt";
 import { createVendorInput } from "../dto";
 import jwt from "jsonwebtoken";
@@ -94,4 +94,14 @@ export const getVendorById = async (req: Request, res: Response) => {
   } else {
     return res.status(200).json({ message: vendor });
   }
+};
+
+export const getTransactions = async (req: Request, res: Response) => {
+  const transactions = await transactionModel.find();
+
+  if (transactions) {
+    return res.status(200).json(transactions);
+  }
+
+  return res.json({ message: "Transactions data not available" });
 };
