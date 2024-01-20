@@ -233,6 +233,8 @@ export const deleteCart = async (req: Request, res: Response) => {
 
 export const createOrder = async (req: Request, res: Response) => {
   const customer = req.user;
+  const {  amount, items } = <OrderInputs>req.body;
+
   if (customer) {
     const orderId = `${Math.floor(Math.random() * 89999) + 1000}`;
     const profile = await customerModel.findById(customer._id);
@@ -240,14 +242,15 @@ export const createOrder = async (req: Request, res: Response) => {
     let cartItems = Array();
     let netAmount = 0.0;
     let vendorId;
+
     const foods = await foodModel
       .find()
       .where("_id")
-      .in(cart.map((item) => item._id))
+      .in(items.map((item) => item._id))
       .exec();
 
     foods.map((food) => {
-      cart.map(({ _id, unit }) => {
+      items.map(({ _id, unit }) => {
         if (food._id == _id) {
           vendorId = food.vendorId;
           netAmount += food.price * unit;
@@ -260,10 +263,12 @@ export const createOrder = async (req: Request, res: Response) => {
         vendorId: vendorId,
         orderId: orderId,
         items: cartItems,
+        paidAmount: amount,
         totalAmount: netAmount,
         remarks: "",
         deliveryId: "",
       });
+
       if (currentOrder) {
         profile.cart = [] as any;
         profile.orders.push(currentOrder);

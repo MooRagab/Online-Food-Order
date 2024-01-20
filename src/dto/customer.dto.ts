@@ -30,12 +30,12 @@ export class editCustomerProfileInput {
   password: string;
 }
 
-export class OrderInputs {
-  _id: string;
-  unit: number;
-}
-
 export class CartItem {
   _id: string;
   unit: number;
+}
+export class OrderInputs {
+  txnId: string;
+  amount: number;
+  items: [CartItem];
 }
