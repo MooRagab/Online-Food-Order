@@ -9,7 +9,7 @@ export const deliverySignUp = async (req: Request, res: Response) => {
   const { email, phone, password, address, firstName, lastName, pincode } = <
     CreateDeliveryUserInput
   >req.body;
- 
+
   const vendor = await deliveryUserModel.findOne({ email }).select("email");
   if (vendor) {
     return res.status(409).json({ message: "Email Is Already Exist" });
@@ -38,7 +38,7 @@ export const deliverySignUp = async (req: Request, res: Response) => {
           process.env.EMAIL_TOKEN
         );
         const message = `
-      <a href = ${req.protocol}://${req.headers.host}/admin/confirmEmail/${token}>Confirm Email</a>
+      <a href = ${req.protocol}://${req.headers.host}/delivery/confirmEmail/${token}>Confirm Delivery Account</a>
       `;
         await sendEmail(email, "confirmEmail", message);
         res.status(201).json({ message: "Done!", savedVendor });

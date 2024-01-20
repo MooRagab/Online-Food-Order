@@ -1,17 +1,23 @@
 import { Router } from "express";
 import { deliveryAuth } from "../middlewares";
-import { deliverySignUp } from "../controllers/deliveryController";
+import {
+  confirmEmail,
+  deliverySignUp,
+} from "../controllers/deliveryController";
 
 const router = Router();
 
 /* ------------------- Signup / Create Customer --------------------- */
 router.post("/signup", deliverySignUp);
 
+/* ------------------- Confirm Account --------------------- */
+router.get("/confirmEmail/:token", confirmEmail);
+
 // /* ------------------- Login --------------------- */
 // router.post("/login", deliveryLogin);
 
 // /* ------------------- Authentication --------------------- */
-// router.use(deliveryAuth());
+router.use(deliveryAuth());
 
 // /* ------------------- Change Service Status --------------------- */
 // router.put("/change-status", UpdateDeliveryUserStatus);
