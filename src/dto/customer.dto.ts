@@ -39,3 +39,19 @@ export class OrderInputs {
   amount: number;
   items: [CartItem];
 }
+
+export class CreateDeliveryUserInput {
+  email: string;
+
+  phone: string;
+
+  password: string;
+
+  firstName: string;
+
+  lastName: string;
+
+  address: string;
+
+  pincode: string;
+}
