@@ -98,7 +98,7 @@ export const getVendorById = async (req: Request, res: Response) => {
 
 export const getTransactions = async (req: Request, res: Response) => {
   const transactions = await transactionModel.find();
-
+ 
   if (transactions) {
     return res.status(200).json(transactions);
   }

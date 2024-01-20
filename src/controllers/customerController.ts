@@ -229,11 +229,14 @@ export const deleteCart = async (req: Request, res: Response) => {
   return res.status(400).json({ message: "cart is Already Empty!" });
 };
 
+//-----------------------------------Delivery Notification---------------------------------
+const assignOrderForDelivery = async (orderId: string, vendorId: string) => {};
+
 //-----------------------------------Order Section---------------------------------
 
 export const createOrder = async (req: Request, res: Response) => {
   const customer = req.user;
-  const {  amount, items } = <OrderInputs>req.body;
+  const { amount, items } = <OrderInputs>req.body;
 
   if (customer) {
     const orderId = `${Math.floor(Math.random() * 89999) + 1000}`;
@@ -258,6 +261,7 @@ export const createOrder = async (req: Request, res: Response) => {
         }
       });
     });
+
     if (cartItems) {
       const currentOrder = await orderModel.create({
         vendorId: vendorId,
@@ -272,7 +276,11 @@ export const createOrder = async (req: Request, res: Response) => {
       if (currentOrder) {
         profile.cart = [] as any;
         profile.orders.push(currentOrder);
+
         const profileResponse = await profile.save();
+
+        await assignOrderForDelivery(currentOrder._id, vendorId);
+
         return res.status(200).json(profileResponse);
       }
     }

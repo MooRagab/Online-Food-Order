@@ -24,9 +24,10 @@ router.get("/vendor/:id", getVendorById);
 router.get("/confirmEmail/:token", confirmEmail);
 
 /* ------------------- Get Transactions --------------------- */
-router.get("/tranactions", getTransactions);
+router.get("/transactions", getTransactions);
 
 /* ------------------- Get Transactions By Id --------------------- */
-router.get("/tranaction/:id", getTransactionById);
+router.get("/transaction/:id", getTransactionById);
 
 export { router as adminRoute };
+ 

@@ -13,6 +13,8 @@ interface VendorDoc extends Document {
   confirmEmail: { type: Boolean; default: false };
   rating: number;
   foods: any;
+  lat: number;
+  lng: number;
 }
 
 const vendorSchema = new Schema(
@@ -35,8 +37,10 @@ const vendorSchema = new Schema(
         ref: "Food",
       },
     ],
+    lat: Number,
+    lng: Number,
   },
-  { 
+  {
     toJSON: {
       transform(doc, ret) {
         delete ret.__v;

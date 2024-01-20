@@ -1,4 +1,4 @@
-import express, { Application, Response } from "express";
+import express, { Application, Request, Response } from "express";
 import {
   adminRoute,
   customerRoute,
@@ -17,7 +17,7 @@ export default async (app: Application) => {
   app.use("/delivery", deliveryRoute);
   app.use("/customer", customerRoute);
   app.use("/shopping", shoppingRoute);
-  app.use("*", (res: Response) => {
+  app.use("*", (req: Request, res: Response) => {
     res.status(404).json({ message: "404 Page Not Found" });
   });
 
