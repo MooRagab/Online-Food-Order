@@ -10,6 +10,7 @@ import {
   foodModel,
   orderModel,
   transactionModel,
+  vendorModel,
 } from "../DB/models";
 import bcrypt from "bcrypt";
 import { GenerateOtp, sendEmail } from "../services";
@@ -230,7 +231,34 @@ export const deleteCart = async (req: Request, res: Response) => {
 };
 
 //-----------------------------------Delivery Notification---------------------------------
-const assignOrderForDelivery = async (orderId: string, vendorId: string) => {};
+// const assignOrderForDelivery = async (orderId: string, vendorId: string) => {
+//   // find the vendor
+//   const vendor = await vendorModel.findById(vendorId);
+//   if (vendor) {
+//     const areaCode = vendor.pincode;
+//     const vendorLat = vendor.lat;
+//     const vendorLng = vendor.lng;
+
+//     //find the available Delivery person
+//     const deliveryPerson = await DeliveryUser.find({
+//       pincode: areaCode,
+//       verified: true,
+//       isAvailable: true,
+//     });
+//     if (deliveryPerson) {
+//       // Check the nearest delivery person and assign the order
+
+//       const currentOrder = await orderModel.findById(orderId);
+//       if (currentOrder) {
+//         //update Delivery ID
+//         currentOrder.deliveryId = deliveryPerson[0]._id;
+//         await currentOrder.save();
+
+//         //Notify to vendor for received new order firebase push notification
+//       }
+//     }
+//   }
+// };
 
 //-----------------------------------Order Section---------------------------------
 
@@ -279,7 +307,7 @@ export const createOrder = async (req: Request, res: Response) => {
 
         const profileResponse = await profile.save();
 
-        await assignOrderForDelivery(currentOrder._id, vendorId);
+        // await assignOrderForDelivery(currentOrder._id, vendorId);
 
         return res.status(200).json(profileResponse);
       }
