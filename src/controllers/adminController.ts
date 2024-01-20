@@ -105,3 +105,15 @@ export const getTransactions = async (req: Request, res: Response) => {
 
   return res.json({ message: "Transactions data not available" });
 };
+
+export const getTransactionById = async (req: Request, res: Response) => {
+  const id = req.params.id;
+
+  const transaction = await transactionModel.findById(id);
+
+  if (transaction) {
+    return res.status(200).json(transaction);
+  }
+
+  return res.json({ message: "Transaction data not available" });
+};
