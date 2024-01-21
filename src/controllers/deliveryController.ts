@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { CreateDeliveryUserInput } from "../dto";
+import { CreateDeliveryUserInput, editCustomerProfileInput } from "../dto";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { deliveryUserModel } from "../DB/models";
@@ -113,4 +113,29 @@ export const getDeliveryProfile = async (
     }
   }
   return res.status(400).json({ msg: "Error while Fetching Profile" });
+};
+
+export const editDeliveryProfile = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const { firstName, lastName, address, password } = <editCustomerProfileInput>(
+    req.body
+  );
+  const customer = await deliveryUserModel.findById(req.user._id);
+  if (!customer) {
+    res.status(404).json({ message: "User Not Found" });
+  } else {
+    const match = bcrypt.compareSync(password, customer.password);
+    if (!match) {
+      res.status(401).json({ message: "Wrong Password" });
+    } else {
+      await deliveryUserModel.updateMany(
+        { _id: req.user._id },
+        { firstName, lastName, address }
+      );
+      res.status(200).json({ message: "Done !", customer });
+    }
+  }
 };

@@ -4,6 +4,7 @@ import {
   confirmEmail,
   deliveryLogin,
   deliverySignUp,
+  editDeliveryProfile,
   getDeliveryProfile,
 } from "../controllers/deliveryController";
 
@@ -23,7 +24,6 @@ router.use(deliveryAuth());
 
 // /* ------------------- Profile --------------------- */
 router.get("/profile", getDeliveryProfile);
-// router.patch("/profile", EditDeliveryProfile);
-
+router.patch("/profile", editDeliveryProfile);
 
 export { router as deliveryRoute };
