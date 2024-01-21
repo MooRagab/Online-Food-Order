@@ -1,0 +1,1248 @@
+{
+	"info": {
+		"_postman_id": "ac117e54-349f-4200-ab6c-b4ceb98bdfd1",
+		"name": "Online-Food-Order",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27999934",
+		"_collection_link": "https://warped-moon-867004.postman.co/workspace/Ragab's-Workspace~139f7d90-8c35-40b6-ac87-a4f60780b551/collection/27999934-ac117e54-349f-4200-ab6c-b4ceb98bdfd1?action=share&source=collection_link&creator=27999934"
+	},
+	"item": [
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Create-Vendor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"name\" : \"Mohamed\" , \r\n\"address\" : \"Baltiem\" , \r\n\"foodType\":\"fish\",\r\n\"ownerName\":\"Ragab\" ,\r\n\"password\":\"Mohamed8809\",\r\n\"rating\":0 \r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/admin/vendor",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admin",
+								"vendor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get-Vendor-By-Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/admin/vendor/65a64290315cb4090793aa59",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admin",
+								"vendor",
+								"65a64290315cb4090793aa59"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get-All-Vendors",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/admin/vendors",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admin",
+								"vendors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get-Transaction-By-Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/admin/transaction/65a8fbe50c0e6d9713c263f2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admin",
+								"transaction",
+								"65a8fbe50c0e6d9713c263f2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get-Transaction",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/admin/transactions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admin",
+								"transactions"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Vendor",
+			"item": [
+				{
+					"name": "Vendor-Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"rmidogab222@gmail.com\" ,\r\n    \"password\":\"Mohamed8809\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/vendor/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"vendor",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Vendor-Profile",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "RAGAB__eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YTY0MjkwMzE1Y2I0MDkwNzkzYWE1OSIsImlhdCI6MTcwNTQ4OTM2MCwiZXhwIjoxNzA1NTc1NzYwfQ.v6l9FDkEeur8Gb6PDJmdFB9wQe1uA1S9PdCqGDtDMzs",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/vendor/vendorProfile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"vendor",
+								"vendorProfile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get-Current-Order",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "RAGAB__eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YTY0MjkwMzE1Y2I0MDkwNzkzYWE1OSIsImlhdCI6MTcwNTQ4OTM2MCwiZXhwIjoxNzA1NTc1NzYwfQ.v6l9FDkEeur8Gb6PDJmdFB9wQe1uA1S9PdCqGDtDMzs",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/vendor/vendorProfile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"vendor",
+								"vendorProfile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get-Order-Details",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "RAGAB__eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YTY0MjkwMzE1Y2I0MDkwNzkzYWE1OSIsImlhdCI6MTcwNTQ4OTM2MCwiZXhwIjoxNzA1NTc1NzYwfQ.v6l9FDkEeur8Gb6PDJmdFB9wQe1uA1S9PdCqGDtDMzs",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/vendor/order/65a78e1ac3eb4ff1d25300ff",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"vendor",
+								"order",
+								"65a78e1ac3eb4ff1d25300ff"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Order-Process",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "RAGAB__eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YTY0MjkwMzE1Y2I0MDkwNzkzYWE1OSIsImlhdCI6MTcwNTQ4OTM2MCwiZXhwIjoxNzA1NTc1NzYwfQ.v6l9FDkEeur8Gb6PDJmdFB9wQe1uA1S9PdCqGDtDMzs",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\":\"Done\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/vendor/order/65a78e1ac3eb4ff1d25300ff",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"vendor",
+								"order",
+								"65a78e1ac3eb4ff1d25300ff"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Vendor-Update-Profile",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "RAGAB__eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YTY0MjkwMzE1Y2I0MDkwNzkzYWE1OSIsImlhdCI6MTcwNTM5NDkxNCwiZXhwIjoxNzA1NDgxMzE0fQ.a0itLw2H__ccwYH-ftNMqwYwq9sYjGYnD_0S2oEQ9u8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"name\":\"Ragabola\" , \r\n\"foodType\":\"n3na3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/vendor/updatevendorprofile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"vendor",
+								"updatevendorprofile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Vendor-Service-Available",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "RAGAB__eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YTY0MjkwMzE1Y2I0MDkwNzkzYWE1OSIsImlhdCI6MTcwNTQ4OTM2MCwiZXhwIjoxNzA1NTc1NzYwfQ.v6l9FDkEeur8Gb6PDJmdFB9wQe1uA1S9PdCqGDtDMzs",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/vendor/service",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"vendor",
+								"service"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Profile-Pic",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "RAGAB__eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OGNmYWI2ODA4MWJlMDAyNTBiY2YwOSIsImlhdCI6MTcwNTAyNTYzOCwiZXhwIjoxNzA1MTEyMDM4fQ.XHaTZzFdJFW6ETQIHil9JJTdqoJLPlTcixPcZg6VEGc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/D:/Ay 7aga/Dis PFP/9bb97d48dbb322697cec173181f7f69c.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/vendor/profilepic",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"vendor",
+								"profilepic"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add-Offer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "RAGAB__eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YTY0MjkwMzE1Y2I0MDkwNzkzYWE1OSIsImlhdCI6MTcwNTU2MTk0MCwiZXhwIjoxNzA1NjQ4MzQwfQ.3v-42oP2ikIsYFSKy0HDM_nOZS7ZxVlqCmiPWZDkPYc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"100 off in week days\",\r\n    \"description\": \"Get 100 off on weekdays for every order\",\r\n    \"offerType\": \"vendor\",\r\n    \"offerAmount\": 100 ,\r\n    \"pincode\":\"8809\" , \r\n    \"promoCode\":\"OFFER100\" , \r\n    \"startValidity\":\"\" ,\r\n    \"endValidity\" :\"\" ,\r\n    \"isActive\":\"true\" ,\r\n    \"minvalue\":\"200\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/vendor/offer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"vendor",
+								"offer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get-Offers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "RAGAB__eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YTY0MjkwMzE1Y2I0MDkwNzkzYWE1OSIsImlhdCI6MTcwNTU2MTk0MCwiZXhwIjoxNzA1NjQ4MzQwfQ.3v-42oP2ikIsYFSKy0HDM_nOZS7ZxVlqCmiPWZDkPYc",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/vendor/offers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"vendor",
+								"offers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit-Offer",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "RAGAB__eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YTY0MjkwMzE1Y2I0MDkwNzkzYWE1OSIsImlhdCI6MTcwNTU2MTk0MCwiZXhwIjoxNzA1NjQ4MzQwfQ.3v-42oP2ikIsYFSKy0HDM_nOZS7ZxVlqCmiPWZDkPYc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"offerType\": \"vendor\",\r\n    \"title\": \"100 off in week days\",\r\n    \"description\": \"Get 100 off on weekdays for every order\",\r\n    \"offerAmount\": 100,\r\n    \"startValidity\": null,\r\n    \"endValidity\": null,\r\n    \"pincode\": \"8809\",\r\n    \"isActive\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/vendor/offer/65a8dfaff45ba40285ea1a94",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"vendor",
+								"offer",
+								"65a8dfaff45ba40285ea1a94"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Food",
+			"item": [
+				{
+					"name": "Add-Food",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "RAGAB__eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OGNmYWI2ODA4MWJlMDAyNTBiY2YwOSIsImlhdCI6MTcwNDc1NDk4NiwiZXhwIjoxNzA0ODQxMzg2fQ.XBH25-_4fmQUIILLyu9aUbgVf3v-_SEbf_9XVj_OMT4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"ay7aga\" , \r\n    \"description\" : \"very ay7aga\", \r\n    \"foodType\" : \"fishs\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/vendor/addfood",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"vendor",
+								"addfood"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get-Food",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Shopping",
+			"item": [
+				{
+					"name": "Food-Availability",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Top-Restaurant",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "RAGAB__eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YTI1ZTYxOGE5ZDkzMDc0NDY2YTM2MCIsImlhdCI6MTcwNTIxMzQxNywiZXhwIjoxNzA1Mjk5ODE3fQ.xz_PGz5oJ3Z1hqro-lvUGVwbjc2Gb__y9A5ZKvNSG5s",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/shopping/toprestaurant/8809",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"shopping",
+								"toprestaurant",
+								"8809"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Food-in-30min",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/shopping/foods-in-30-min/8809",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"shopping",
+								"foods-in-30-min",
+								"8809"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search-Food",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/shopping/searchfoods/8809",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"shopping",
+								"searchfoods",
+								"8809"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restaurant-By-Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/shopping/restaurant/65a25e618a9d93074466a360",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"shopping",
+								"restaurant",
+								"65a25e618a9d93074466a360"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get-Offers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/shopping/offers/8809",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"shopping",
+								"offers",
+								"8809"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "SignUp-Customer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"rmidoragab222@gmail.com\",\r\n    \"password\": \"8809\",\r\n    \"firstName\": \"Mohamed\",\r\n    \"lastName\": \"ragab\",\r\n    \"phone\": \"1004068671\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/customer/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"customer",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LogIn-Customer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"midoragab811@gmail.com\", \r\n    \"password\":\"8809\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/customer/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"customer",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Profile-Customer",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "RAGAB__eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YTUwMjZmN2E4ZGYwMjU4NmNlYzViNyIsImlhdCI6MTcwNTM4NTY2NywiZXhwIjoxNzA1NDcyMDY3fQ.zWNXAgEyc1HwocfVBMt9MY4ib5xLlzCsMKK5fhOSf9w",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/customer/profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"customer",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit-Profile-Customer",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "RAGAB__eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YTYyODMxZmNjZjJjZmYyMzI4NmRlZiIsImlhdCI6MTcwNTM4ODEyNywiZXhwIjoxNzA1NDc0NTI3fQ.tVvF3Net0YYpVQ9F3VxdzTi9XOGapSQAlo7YGu5wqMU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"8809\",\r\n    \"lastName\": \"ahmed\",\r\n    \"firstName\": \"Youssef\",\r\n    \"address\": \"Cairo\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/customer/editprofile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"customer",
+								"editprofile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create-Order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "RAGAB__eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YTUwMjZmN2E4ZGYwMjU4NmNlYzViNyIsImlhdCI6MTcwNTczOTIyNiwiZXhwIjoxNzA1ODI1NjI2fQ.jWmmWiSxy6gwKeLPnCqbaAefoUJlpiSjTeG8-ut2isk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"amount\": 500,\r\n    \"items\": [\r\n        {\r\n            \"_id\": \"65a25edc8a9d93074466a368\",\r\n            \"unit\": 4\r\n        },\r\n        {\r\n            \"_id\": \"65a382fabc873054e8510ea8\",\r\n            \"unit\": 3\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/customer/createorder",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"customer",
+								"createorder"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get-Orders",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "RAGAB__eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YTUwMjZmN2E4ZGYwMjU4NmNlYzViNyIsImlhdCI6MTcwNTQ3OTM5NywiZXhwIjoxNzA1NTY1Nzk3fQ.37N4WGZA3ZSJs2His9oMFZ3DkmdMg1kg_xu_OvbyXC8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/customer/orders",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"customer",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get-Orders-By-Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "RAGAB__eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YTUwMjZmN2E4ZGYwMjU4NmNlYzViNyIsImlhdCI6MTcwNTQ3OTM5NywiZXhwIjoxNzA1NTY1Nzk3fQ.37N4WGZA3ZSJs2His9oMFZ3DkmdMg1kg_xu_OvbyXC8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/customer/order/65a78e1ac3eb4ff1d25300ff",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"customer",
+								"order",
+								"65a78e1ac3eb4ff1d25300ff"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add-To-Cart",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "RAGAB__eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YTUwMjZmN2E4ZGYwMjU4NmNlYzViNyIsImlhdCI6MTcwNTQ3OTM5NywiZXhwIjoxNzA1NTY1Nzk3fQ.37N4WGZA3ZSJs2His9oMFZ3DkmdMg1kg_xu_OvbyXC8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"_id\":\"65a382fabc873054e8510ea8\" , \r\n    \"unit\":2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/customer/cart",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"customer",
+								"cart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete-Cart",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "RAGAB__eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YTUwMjZmN2E4ZGYwMjU4NmNlYzViNyIsImlhdCI6MTcwNTQ3OTM5NywiZXhwIjoxNzA1NTY1Nzk3fQ.37N4WGZA3ZSJs2His9oMFZ3DkmdMg1kg_xu_OvbyXC8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/customer/cart",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"customer",
+								"cart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get-Cart",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "RAGAB__eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YTUwMjZmN2E4ZGYwMjU4NmNlYzViNyIsImlhdCI6MTcwNTQ3OTM5NywiZXhwIjoxNzA1NTY1Nzk3fQ.37N4WGZA3ZSJs2His9oMFZ3DkmdMg1kg_xu_OvbyXC8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/customer/cart",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"customer",
+								"cart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify-Offers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "RAGAB__eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YTUwMjZmN2E4ZGYwMjU4NmNlYzViNyIsImlhdCI6MTcwNTU3MDE1NiwiZXhwIjoxNzA1NjU2NTU2fQ.YtB00MV3Oc6wbOMhuD5LYS-5edgdQnqpJpN2VMXsoY8",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/customer/offer/verify/65a8dfaff45ba40285ea1a94",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"customer",
+								"offer",
+								"verify",
+								"65a8dfaff45ba40285ea1a94"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create-Payment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "RAGAB__eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YTUwMjZmN2E4ZGYwMjU4NmNlYzViNyIsImlhdCI6MTcwNTU3MDE1NiwiZXhwIjoxNzA1NjU2NTU2fQ.YtB00MV3Oc6wbOMhuD5LYS-5edgdQnqpJpN2VMXsoY8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"offerId\":\"65a8dfaff45ba40285ea1a94\" , \r\n    \"amount\":\"420\" ,\r\n    \"paymentMode\":\"COD\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/customer/create-payment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"customer",
+								"create-payment"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Delivery",
+			"item": [
+				{
+					"name": "Delivery-SignUp",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \" rmidoragab222@gmail.com\",\r\n    \"firstName\": \"Ragab\",\r\n    \"address\": \"cairo - egypt\",\r\n    \"pincode\": \"8809\",\r\n    \"lastName\": \"Mohamed\",\r\n    \"phone\": \"01004068671\",\r\n    \"password\": \"mohamed8809\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/delivery/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"delivery",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delivery-LogIn",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"rmidoragab222@gmail.com\" , \r\n    \"password\":\"mohamed8809\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/delivery/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"delivery",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delivery-Profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "RAGAB__eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YWJjNzhjOTVkZWRlZDYzZmM4YzEyOCIsImlhdCI6MTcwNTgzNzYyMywiZXhwIjoxNzA1OTI0MDIzfQ.QwOywnnJon3NcEMfXTrjKGrD3kidRmvT1qqhrMRYmM0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/delivery/profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"delivery",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delivery-Edit-Profile",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "RAGAB__eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YWJjNzhjOTVkZWRlZDYzZmM4YzEyOCIsImlhdCI6MTcwNTgzNzYyMywiZXhwIjoxNzA1OTI0MDIzfQ.QwOywnnJon3NcEMfXTrjKGrD3kidRmvT1qqhrMRYmM0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\":\"mohamed8809\" ,\r\n    \"firstName\":\"ay7aga\" , \r\n    \"lastName\":\"men ana\" , \r\n    \"address\":\"KSU\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/delivery/profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"delivery",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delivery-Status",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "RAGAB__eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YWJjNzhjOTVkZWRlZDYzZmM4YzEyOCIsImlhdCI6MTcwNTgzNzYyMywiZXhwIjoxNzA1OTI0MDIzfQ.QwOywnnJon3NcEMfXTrjKGrD3kidRmvT1qqhrMRYmM0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"lat\": 1916216166165,\r\n    \"lng\": 8648919194954\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/delivery/change-status",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"delivery",
+								"change-status"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
