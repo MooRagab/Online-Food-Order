@@ -97,3 +97,20 @@ export const deliveryLogin = async (req: Request, res: Response) => {
     res.status(500).json({ message: "Internal Server Error", error });
   }
 };
+
+export const getDeliveryProfile = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const deliveryUser = req.user;
+
+  if (deliveryUser) {
+    const profile = await deliveryUserModel.findById(deliveryUser._id);
+
+    if (profile) {
+      return res.status(201).json(profile);
+    }
+  }
+  return res.status(400).json({ msg: "Error while Fetching Profile" });
+};

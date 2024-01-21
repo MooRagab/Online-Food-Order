@@ -4,6 +4,7 @@ import {
   confirmEmail,
   deliveryLogin,
   deliverySignUp,
+  getDeliveryProfile,
 } from "../controllers/deliveryController";
 
 const router = Router();
@@ -20,11 +21,9 @@ router.post("/login", deliveryLogin);
 // /* ------------------- Authentication --------------------- */
 router.use(deliveryAuth());
 
-// /* ------------------- Change Service Status --------------------- */
-// router.put("/change-status", UpdateDeliveryUserStatus);
-
 // /* ------------------- Profile --------------------- */
-// router.get("/profile", GetDeliveryProfile);
+router.get("/profile", getDeliveryProfile);
 // router.patch("/profile", EditDeliveryProfile);
+
 
 export { router as deliveryRoute };
