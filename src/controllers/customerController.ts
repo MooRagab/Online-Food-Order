@@ -243,7 +243,7 @@ const assignOrderForDelivery = async (orderId: string, vendorId: string) => {
     //find the available Delivery person
     const deliveryPerson = await deliveryUserModel.find({
       pincode: areaCode,
-      verified: true,
+      confirmEmail: true,
       isAvailable: true,
     });
     if (deliveryPerson) {
