@@ -139,3 +139,31 @@ export const editDeliveryProfile = async (
     }
   }
 };
+
+export const updateDeliveryUserStatus = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const deliveryUser = req.user;
+
+  if (deliveryUser) {
+    const { lat, lng } = req.body;
+
+    const profile = await deliveryUserModel.findById(deliveryUser._id);
+
+    if (profile) {
+      if (lat && lng) {
+        profile.lat = lat;
+        profile.lng = lng;
+      }
+
+      profile.isAvailable = !profile.isAvailable;
+
+      const result = await profile.save();
+
+      return res.status(201).json(result);
+    }
+  }
+  return res.status(400).json({ msg: "Error while Updating Profile" });
+};

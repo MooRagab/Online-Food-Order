@@ -6,6 +6,7 @@ import {
   deliverySignUp,
   editDeliveryProfile,
   getDeliveryProfile,
+  updateDeliveryUserStatus,
 } from "../controllers/deliveryController";
 
 const router = Router();
@@ -25,5 +26,8 @@ router.use(deliveryAuth());
 // /* ------------------- Profile --------------------- */
 router.get("/profile", getDeliveryProfile);
 router.patch("/profile", editDeliveryProfile);
+
+// /* ------------------- Delivery Status --------------------- */
+router.patch("/change-status", updateDeliveryUserStatus);
 
 export { router as deliveryRoute };
