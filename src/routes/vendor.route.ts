@@ -14,13 +14,14 @@ import {
   getOffers,
   editOffer,
 } from "../controllers";
-import { auth } from "../middlewares";
+import { auth, validation } from "../middlewares";
 import { fileValidation, myMulter } from "../services/Multer";
+import { vendorValidator } from "../validation";
 
 const router = Router();
 
 /* -------------------LogIn Vendor--------------------- */
-router.post("/login", vendorLogin);
+router.post("/login", validation(vendorValidator.signIn as any), vendorLogin);
 /* -------------------Auth Middelware--------------------- */
 router.use(auth());
 /* -------------------Get Vendor Profile--------------------- */
@@ -38,11 +39,11 @@ router.post(
   "/profilepic",
   myMulter(fileValidation).single("image"),
   addProfilePic
-); 
+);
 
 //ORDERS
 router.get("/orders", getCurrentOrders);
-router.put("/order/:id/process", processOrder); 
+router.put("/order/:id/process", processOrder);
 router.get("/order/:id", getOrderDetails);
 
 //OFFERS

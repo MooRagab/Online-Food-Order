@@ -5,17 +5,17 @@ export const signUp = {
     .object()
     .required()
     .keys({
-      ownerName: joi.string().required().min(2).max(20).messages({
-        "any.required": "Please enter owner name",
-        "string.empty": " Owner name field cannot be empty",
+      firstName: joi.string().required().min(4).max(20).messages({
+        "any.required": "Please enter your first name",
+        "string.empty": " firstName field cannot be empty",
         "string.max": "length must be less than or equal to 20 characters long",
-        "string.min": "length must be at least 2 characters long",
+        "string.min": "length must be at least 4 characters long",
       }),
-      name: joi.string().required().min(1).max(20).messages({
-        "any.required": "Please enter your restaurant name",
-        "string.empty": "Name field cannot be empty",
+      lastName: joi.string().required().min(4).max(20).messages({
+        "any.required": "Please enter your last name",
+        "string.empty": "lastName field cannot be empty",
         "string.max": "length must be less than or equal to 20 characters long",
-        "string.min": "length must be at least 1 characters long",
+        "string.min": "length must be at least 4 characters long",
       }),
       email: joi.string().required().email().messages({
         "any.required": "Email Is Required",
@@ -50,14 +50,8 @@ export const signUp = {
         "string.min":
           "Invalid phone number. Please enter a valid phone number with no more than 11 digits.",
       }),
-      address: joi.string().messages({
-        "string.empty": "Address field cannot be empty",
-      }),
-      pincode: joi.string().required().messages({
-        "any.required": "Please enter your pincode",
-        "string.empty": "pincode field cannot be empty",
-      }),
-      foodType: joi.string(),
+      lat: joi.number(),
+      lng: joi.number(),
     }),
 };
 export const signIn = {

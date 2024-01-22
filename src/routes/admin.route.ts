@@ -9,12 +9,12 @@ import {
   getTransactionById,
 } from "../controllers";
 import { validation } from "../middlewares";
-import { validator } from "../validation";
+import { vendorValidator } from "../validation";
 
 const router = Router();
 
 /* ------------------- Signup / Create Vendor --------------------- */
-router.post("/vendor", validation(validator.signUp as any), createVendor);
+router.post("/vendor", validation(vendorValidator.signUp as any), createVendor);
 
 /* ------------------- Get Vendors --------------------- */
 router.get("/vendors", getVendors);

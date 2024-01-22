@@ -14,17 +14,26 @@ import {
   verifyOffer,
   createPayment,
 } from "../controllers/customerController";
-import { customerAuth } from "../middlewares";
+import { customerAuth, validation } from "../middlewares";
+import { customerValidator } from "../validation";
 
 const router = Router();
 
 //CUSTOMER
 /* ------------------- Signup / Create Customer --------------------- */
-router.post("/signup", customerSignUp);
+router.post(
+  "/signup",
+  validation(customerValidator.signUp as any),
+  customerSignUp
+);
 /* ------------------- Suignup / Create Customer --------------------- */
 router.get("/confirmemail/:token", confirmCustomerEmail);
 /* ------------------- Login --------------------- */
-router.post("/login", customerLogin);
+router.post(
+  "/login",
+  validation(customerValidator.signIn as any),
+  customerLogin
+);
 /* ------------------- Auth Middelware --------------------- */
 router.use(customerAuth());
 /* ------------------- Customer profile --------------------- */
