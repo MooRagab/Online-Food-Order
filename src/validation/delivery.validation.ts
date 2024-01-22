@@ -3,7 +3,6 @@ import joi from "joi";
 export const signUp = {
   body: joi
     .object()
-    .required()
     .keys({
       firstName: joi.string().required().min(4).max(20).messages({
         "any.required": "Please enter your first name",
@@ -53,6 +52,7 @@ export const signUp = {
       pincode: joi.string().messages({
         "string.empty": "pincode field cannot be empty",
       }),
+      address: joi.string(),
     }),
 };
 export const signIn = {
