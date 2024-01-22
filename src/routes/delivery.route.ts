@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { deliveryAuth } from "../middlewares";
+import { deliveryAuth, validation } from "../middlewares";
 import {
   confirmEmail,
   deliveryLogin,
@@ -8,17 +8,26 @@ import {
   getDeliveryProfile,
   updateDeliveryUserStatus,
 } from "../controllers/deliveryController";
+import { deliveryValidator } from "../validation";
 
 const router = Router();
 
 /* ------------------- Signup / Create Customer --------------------- */
-router.post("/signup", deliverySignUp);
+router.post(
+  "/signup",
+  validation(deliveryValidator.signUp as any),
+  deliverySignUp
+);
 
 /* ------------------- Confirm Account --------------------- */
 router.get("/confirmEmail/:token", confirmEmail);
 
 // /* ------------------- Login --------------------- */
-router.post("/login", deliveryLogin);
+router.post(
+  "/login",
+  validation(deliveryValidator.signIn as any),
+  deliveryLogin
+);
 
 // /* ------------------- Authentication --------------------- */
 router.use(deliveryAuth());
