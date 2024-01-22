@@ -8,11 +8,13 @@ import {
   getTransactions,
   getTransactionById,
 } from "../controllers";
+import { validation } from "../middlewares";
+import { validator } from "../validation";
 
 const router = Router();
 
 /* ------------------- Signup / Create Vendor --------------------- */
-router.post("/vendor", createVendor);
+router.post("/vendor", validation(validator.signUp as any), createVendor);
 
 /* ------------------- Get Vendors --------------------- */
 router.get("/vendors", getVendors);
@@ -30,4 +32,3 @@ router.get("/transactions", getTransactions);
 router.get("/transaction/:id", getTransactionById);
 
 export { router as adminRoute };
- 
