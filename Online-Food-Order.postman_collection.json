@@ -17,7 +17,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\"name\" : \"Mohamed\" , \r\n\"address\" : \"Baltiem\" , \r\n\"foodType\":\"fish\",\r\n\"ownerName\":\"Ragab\" ,\r\n\"password\":\"Mohamed8809\",\r\n\"rating\":0 \r\n\r\n}",
+							"raw": "{\r\n    \"name\": \"Third Rest\",\r\n    \"foodType\": \"Checken\",\r\n    \"ownerName\": \"Ahmed Ragab\",\r\n    \"password\": \"Mohamed8809\",\r\n    \"cPassword\": \"Mohamed8809\",\r\n    \"email\": \"rmidogab28422@gmail.com\",\r\n    \"pincode\": \"8809\",\r\n    \"phone\": \"01892459193\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -681,7 +681,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"rmidoragab222@gmail.com\",\r\n    \"password\": \"8809\",\r\n    \"firstName\": \"Mohamed\",\r\n    \"lastName\": \"ragab\",\r\n    \"phone\": \"1004068671\"\r\n}",
+							"raw": "{\r\n    \"email\": \"rmidoragab222@gmail.com\",\r\n    \"password\": \"Mohamed8809\",\r\n    \"cPassword\": \"Mohamed8809\",\r\n    \"firstName\": \"Mohamed\",\r\n    \"lastName\": \"ragab\",\r\n    \"phone\": \"01904068671\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -807,13 +807,13 @@
 						"header": [
 							{
 								"key": "authorization",
-								"value": "RAGAB__eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YTUwMjZmN2E4ZGYwMjU4NmNlYzViNyIsImlhdCI6MTcwNTczOTIyNiwiZXhwIjoxNzA1ODI1NjI2fQ.jWmmWiSxy6gwKeLPnCqbaAefoUJlpiSjTeG8-ut2isk",
+								"value": "RAGAB__eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YWUzYzc0MGQwNzY5ZGMyMTVlMTlkMSIsImlhdCI6MTcwNTkxNzU5OCwiZXhwIjoxNzA2MDAzOTk4fQ.uQdMwjfdGhnWvGyVat6h2lrdoPTA6F9txUa26wqd_aE",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"amount\": 500,\r\n    \"items\": [\r\n        {\r\n            \"_id\": \"65a25edc8a9d93074466a368\",\r\n            \"unit\": 4\r\n        },\r\n        {\r\n            \"_id\": \"65a382fabc873054e8510ea8\",\r\n            \"unit\": 3\r\n        }\r\n    ]\r\n}",
+							"raw": "{\r\n    \"amount\": 500,\r\n    \"items\": [\r\n        {\r\n            \"_id\": \"65a25edc8a9d93074466a368\",\r\n            \"unit\": 2\r\n        },\r\n        {\r\n            \"_id\": \"65a382fabc873054e8510ea8\",\r\n            \"unit\": 3\r\n        }\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1095,7 +1095,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \" rmidoragab222@gmail.com\",\r\n    \"firstName\": \"Ragab\",\r\n    \"address\": \"cairo - egypt\",\r\n    \"pincode\": \"8809\",\r\n    \"lastName\": \"Mohamed\",\r\n    \"phone\": \"01004068671\",\r\n    \"password\": \"mohamed8809\"\r\n}",
+							"raw": "{\r\n    \"email\": \"rmidoragabkk222@gmail.com\",\r\n    \"firstName\": \"Ragab\",\r\n    \"address\": \"cairo - egypt\",\r\n    \"pincode\": \"8809\",\r\n    \"lastName\": \"Mohamed\",\r\n    \"phone\": \"00006686971\",\r\n    \"password\": \"Mohamed8809\",\r\n    \"cPassword\": \"Mohamed8809\"\r\n\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
