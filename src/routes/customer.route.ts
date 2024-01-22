@@ -15,7 +15,7 @@ import {
   createPayment,
 } from "../controllers/customerController";
 import { customerAuth, validation } from "../middlewares";
-import { customerValidator } from "../validation";
+import { customerValidator, orderValidator } from "../validation";
 
 const router = Router();
 
@@ -51,7 +51,11 @@ router.delete("/cart", deleteCart);
 
 //ORDER
 /* ------------------- Create Order --------------------- */
-router.post("/createorder", createOrder);
+router.post(
+  "/createorder",
+  validation(orderValidator.createOrder as any),
+  createOrder
+);
 /* ------------------- Get Order --------------------- */
 router.get("/orders", getOrders);
 /* ------------------- Get Order By ID --------------------- */
