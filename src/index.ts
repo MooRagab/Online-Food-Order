@@ -4,7 +4,7 @@ dotenv.config({ path: path.join(__dirname, "./config/.env") });
 import express from "express";
 
 import connectDB from "./DB/connection";
-import App from "./services/ExpreesApp";
+import App from "./services/ExpressApp";
 
 const startServer = async () => {
   const port = process.env.PORT;
@@ -15,4 +15,3 @@ const startServer = async () => {
 };
 
 startServer();
- 
