@@ -317,4 +317,163 @@ To get details of a specific restaurant, make a GET request to the specified end
 **Usage:**
 To get a list of offers, make a GET request to the specified endpoint.
 
+##  Customer Operations
 
+### 1. Sign Up - Customer
+
+**Endpoint:** `POST /customer/signup`
+
+**Description:** Create a new customer account.
+
+**Usage:**
+To sign up as a customer, make a POST request to the specified endpoint with the required information in the request body.
+- **Request Body:**
+  ```json
+  {
+   "email": "your_email@example.com",
+   "password": "YourPassword123",
+   "cPassword": "YourPassword123",
+   "firstName": "YourFirstName",
+   "lastName": "YourLastName",
+   "phone": "YourPhoneNumber"
+  }
+### 2. Log In - Customer
+
+**Endpoint:** `POST /customer/login`
+
+**Description:** Log in as a customer.
+
+**Usage:**
+To log in, make a POST request to the specified endpoint with your email and password in the request body.
+- **Request Body:**
+  ```json
+  {
+   "email": "your_email@example.com",
+   "password": "YourPassword123",
+  }
+
+### 3. Profile - Customer
+
+**Endpoint:** `GET /customer/profile`
+
+**Description:** Retrieve the profile information of the logged-in customer.
+
+**Usage:**
+To get the customer profile, make a GET request to the specified endpoint with the authorization header containing the JWT obtained after successful login.
+
+### 4. Edit Profile - Customer
+
+**Endpoint:** `PATCH /customer/editprofile`
+
+**Description:** Edit the profile information of the logged-in customer.
+
+**Usage:**
+To edit the customer profile, make a PATCH request to the specified endpoint with the authorization header containing the JWT obtained after successful login. Include the updated profile information in the request body.
+(You must insert password to confirm your self)
+- **Request Body:**
+  ```json
+  {
+   "password": "YourPassword123",
+   "firstName": "YourNewFirstName",
+   "lastName": "YourNewLastName",
+   "address": "YourNewAddress"
+  }
+### 5. Create Order
+
+**Endpoint:** `POST /customer/createorder`
+
+**Description:** Create a new order as a customer.
+
+**Usage:**
+To create an order, make a POST request to the specified endpoint with the authorization header containing the JWT obtained after successful login. Include the order details in the request body.
+- **Request Body:**
+  ```json
+  {
+    "amount": ,
+  "items": [
+    {
+      "_id": "orderId",
+      "unit": 2
+    },
+    {
+      "_id": "orderId",
+      "unit": 
+    }
+  ]
+  }
+
+### 6. Get Orders
+
+**Endpoint:** `GET /customer/orders`
+
+**Description:** Retrieve a list of orders placed by the logged-in customer.
+
+**Usage:**
+To get the list of orders, make a GET request to the specified endpoint with the authorization header containing the JWT obtained after successful login.
+
+### 7. Get Order By ID
+
+**Endpoint:** `GET /customer/order/{orderId}`
+
+**Description:** Retrieve details of a specific order by its ID.
+
+**Usage:**
+To get details of a specific order, replace {orderId} with the actual order ID and make a GET request to the specified endpoint with the authorization header containing the JWT obtained after successful login.
+
+### 8. Add to Cart
+
+**Endpoint:** `POST /customer/cart`
+
+**Description:** Add items to the customer's shopping cart.
+
+**Usage:**
+To add items to the cart, make a POST request to the specified endpoint with the authorization header containing the JWT obtained after successful login. Include the item details in the request body.
+- **Request Body:**
+  ```json
+  {
+      "_id": "orderId",
+      "unit": 
+  }
+
+### 9. Delete Cart
+
+**Endpoint:** `DELETE /customer/cart`
+
+**Description:** Clear the items in the customer's shopping cart.
+
+**Usage:**
+To clear the cart, make a DELETE request to the specified endpoint with the authorization header containing the JWT obtained after successful login.
+
+### 10. Get Cart
+
+**Endpoint:** `GET /customer/cart`
+
+**Description:** Retrieve the items in the customer's shopping cart.
+
+**Usage:**
+To get the cart items, make a GET request to the specified endpoint with the authorization header containing the JWT obtained after successful login.
+
+### 11. Verify Offers
+
+**Endpoint:** `GET /customer/offer/verify/{offerId}`
+
+**Description:** Verify a promotional offer as a customer.
+
+**Usage:**
+To verify an offer, replace {offerId} with the actual offer ID and make a GET request to the specified endpoint with the authorization header containing the JWT obtained after successful login.
+
+### 12. Create Payment
+
+**Endpoint:** `POST /customer/create-payment`
+
+**Description:** Create a payment for an order as a customer.
+
+**Usage:**
+To create a payment, make a POST request to the specified endpoint with the authorization header containing the JWT obtained after successful login. Include the payment details in the request body.
+- **Request Body:**
+  ```json
+  {
+      "offerId": "orderId",
+      "amount":  ,
+      "paymentMod":""
+  }
