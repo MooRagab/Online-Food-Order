@@ -59,7 +59,7 @@ To interact with the API, follow these steps:
    ![image](https://github.com/MooRagab/Online-Food-Order/assets/79729746/69afc7af-714d-4800-b6e5-c0d13637d1b3)
 
 
-### Admin Operations
+## Admin Operations
 
 The Admin collection in the Postman documentation provides convenient API requests to manage vendors and transactions within the Online Food Order system.
 
@@ -110,7 +110,7 @@ This request creates a new vendor with the specified details.
 - **Usage:**
   - This request provides information about all recorded transactions.
 
-### Vendor Operations
+## Vendor Operations
 
 #### 1. Vendor Login
 
@@ -223,15 +223,98 @@ This request creates a new vendor with the specified details.
 - **Request Body:**
   ```json
   {
-    "offerType": "vendor",
-    "title": "100 off in week days",
-    "description": "Get 100 off on weekdays for every order",
-    "offerAmount": 100,
-    "startValidity": null,
-    "endValidity": null,
-    "pincode": "8809",
-    "isActive": true
+    "offerType": "",
+    "title": "",
+    "description": "",
+    "offerAmount": ,
+    "startValidity": ,
+    "endValidity": ,
+    "pincode": "",
+    "isActive": 
   }
  - **Usage:**
    - Replace `65a8dfaff45ba40285ea1a94` with the actual offer ID to update offer details.
    - Ensure the request includes the `authorization` header with the JWT obtained after successful login.
+
+ ##  Food Operations
+
+### 1. Add Food
+
+**Endpoint:** `POST /food/addFood`
+
+**Description:** Add a new food item.
+
+- **Request Body:**
+  ```json
+  {
+  "name": "",
+  "description": "",
+  "foodType": ""
+  }
+ - **Usage:**
+   - Ensure the request includes the `authorization` header with the JWT obtained after successful login.
+
+
+### 2. Get Food
+
+**Endpoint:** `POST /food/getFood`
+
+**Description:** Retrieve a list of all available food items.
+
+ - **Usage:**
+   - Make a GET request to the specified endpoint.
+  
+##  Shopping Operations
+
+### 1. Food Availability
+
+**Endpoint:** `GET /shopping/foodAvailability`
+
+**Description:** Check the availability of food items.
+
+**Usage:** Make a GET request to the specified endpoint.
+
+### 2. Top Restaurant
+
+**Endpoint:** `GET /shopping/topRestaurant/:pincode`
+
+**Description:** Retrieve information about the top restaurant in a specific pincode.
+**Usage:** Ensure the request includes the `authorization` header with the JWT obtained after successful login.
+
+### 3. Food in 30 Minutes
+
+**Endpoint:** `GET /shopping/foodsIn30Min/:pincode`
+
+**Description:** Retrieve food items available for delivery in 30 minutes within a specific pincode.
+
+**Usage:**
+To retrieve food items available for delivery in 30 minutes, make a GET request to the specified endpoint.
+
+### 4. Search Food
+
+**Endpoint:** `GET /shopping/searchFoods/:pincode`
+
+**Description:** Search for food items available within a specific pincode.
+
+**Usage:**
+To search for food items, make a GET request to the specified endpoint.
+
+### 5. Restaurant by ID
+
+**Endpoint:** `GET /shopping/restaurant/65a25e618a9d93074466a360`
+
+**Description:** Retrieve detailed information about a specific restaurant using its unique ID.
+
+**Usage:**
+To get details of a specific restaurant, make a GET request to the specified endpoint.
+
+### 6. Get Offers
+
+**Endpoint:** `GET /shopping/offers/:pincode`
+
+**Description:** Retrieve a list of available offers within a specific pincode.
+
+**Usage:**
+To get a list of offers, make a GET request to the specified endpoint.
+
+
