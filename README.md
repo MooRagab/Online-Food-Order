@@ -37,16 +37,27 @@ The project follows a structured organization within the `src` directory:
 - **dto:** Data Transfer Objects for defining the types and structures of data used in the application.
 - **index.ts:** The main entry point of the application.
 
+## Getting Started
+
+To run the project locally, follow these steps:
+
+1. Clone the repository: `git clone https://github.com/MooRagab/Online-Food-Order.git`
+2. Install dependencies: `npm install`
+3. Run the development server: `npm run dev`
+
 ## Postman Documentation
 
-Explore the API endpoints and examples using the [Online Food Order API Postman Documentation](./postman-docs.json).
+Explore the API endpoints and examples using the [Online Food Order API Postman Documentation](./Online-Food-Order.postman_collection.json).
 
 ## Usage
 
 To interact with the API, follow these steps:
 
-1. Download the [Online Food Order API Postman Collection](./postman-docs.json).
+1. Download the [Online Food Order API Postman Collection](./Online-Food-Order.postman_collection.json).
 2. Import the collection into your Postman app.
+
+   ![image](https://github.com/MooRagab/Online-Food-Order/assets/79729746/69afc7af-714d-4800-b6e5-c0d13637d1b3)
+
 
 ### Admin Operations
 
@@ -59,12 +70,168 @@ The Admin collection in the Postman documentation provides convenient API reques
 - **Request Body:**
   ```json
   {
-    "name": "Third Rest",
-    "foodType": "Chicken",
-    "ownerName": "Ahmed Ragab",
-    "password": "Mohamed8809",
-    "cPassword": "Mohamed8809",
-    "email": "rmidogab28422@gmail.com",
-    "pincode": "8809",
-    "phone": "01892459193"
+    "name": "",
+    "foodType": "",
+    "ownerName": "",
+    "password": "",
+    "cPassword": "",
+    "email": "",
+    "pincode": "",
+    "phone": ""
   }
+ - **Usage:**
+This request creates a new vendor with the specified details.
+
+#### 2. Get Vendor By ID
+
+- **Endpoint:** `GET /admin/vendor/65a64290315cb4090793aa59`
+- **Description:** Retrieve information about a specific vendor using their ID.
+- **Usage:**
+  - Replace `65a64290315cb4090793aa59` in the endpoint with the actual vendor ID to get detailed information.
+
+#### 3. Get All Vendors
+
+- **Endpoint:** `GET /admin/vendors`
+- **Description:** Retrieve a list of all vendors in the system.
+- **Usage:**
+  - This request fetches information about all registered vendors.
+
+#### 4. Get Transaction By ID
+
+- **Endpoint:** `GET /admin/transaction/65a8fbe50c0e6d9713c263f2`
+- **Description:** Retrieve details about a specific transaction using its ID.
+- **Usage:**
+  - Replace `65a8fbe50c0e6d9713c263f2` in the endpoint with the actual transaction ID to get detailed information.
+
+#### 5. Get All Transactions
+
+- **Endpoint:** `GET /admin/transactions`
+- **Description:** Retrieve a list of all transactions in the system.
+- **Usage:**
+  - This request provides information about all recorded transactions.
+
+### Vendor Operations
+
+#### 1. Vendor Login
+
+- **Endpoint:** `POST /vendor/login`
+- **Description:** Authenticate and log in as a vendor.
+- **Request Body:**
+  ```json
+  {
+    "email": "",
+    "password": ""
+  }
+- **Usage:**
+  - This request logs in the vendor using the provided email and password.
+    
+#### 2. Vendor Profile
+
+- **Endpoint:** `GET /vendor/vendorProfile`
+- **Description:** Retrieve the profile information of the logged-in vendor.
+- **Usage:**
+  - Ensure the request includes the `authorization` header with the JWT obtained after successful login.
+
+#### 3. Get Current Order
+
+- **Endpoint:** `GET /vendor/vendorProfile`
+- **Description:** Retrieve details about the current order of the logged-in vendor.
+- **Usage:**
+  - Ensure the request includes the `authorization` header with the JWT obtained after successful login.
+
+#### 4. Get Order Details
+
+- **Endpoint:** `GET /vendor/order/65a78e1ac3eb4ff1d25300ff`
+- **Description:** Retrieve detailed information about a specific order.
+- **Usage:**
+  - Replace `65a78e1ac3eb4ff1d25300ff` with the actual order ID to get specific details.
+  - Ensure the request includes the `authorization` header with the JWT obtained after successful login.
+
+#### 5. Order Process
+
+- **Endpoint:** `PUT /vendor/order/65a78e1ac3eb4ff1d25300ff`
+- **Description:** Update the status of a specific order (e.g., mark as "Done").
+- **Request Body:**
+  ```json
+  {
+    "status": "Done"
+  }
+- **Usage:**
+  - Replace `65a78e1ac3eb4ff1d25300ff` with the actual order ID to update the order status.
+  - Ensure the request includes the `authorization` header with the JWT obtained after successful login.
+
+### 6. Vendor Update Profile
+
+- **Endpoint:** `PATCH /vendor/updatevendorprofile`
+- **Description:** Update the profile information of the logged-in vendor.
+- **Request Body:**
+  ```json
+  {
+    "name": "",
+    "foodType": ""
+  }
+ - **Usage:**
+   - Ensure the request includes the `authorization` header with the JWT obtained after successful login..
+
+    ### 7. Vendor Service Available
+
+- **Endpoint:** `PATCH /vendor/service`
+- **Description:** Toggle the availability status of the vendor's service.
+- **Usage:** Ensure the request includes the `authorization` header with the JWT obtained after successful login.
+
+### 8. Profile Pic
+
+- **Endpoint:** `POST /vendor/profilepic`
+- **Description:** Upload a profile picture for the logged-in vendor.
+- **Request Body:**
+  - Form Data:
+    - Key: `image`, Type: `file`, Source: [Path to the Image File]
+- **Usage:**
+  - Replace `[Path to the Image File]` with the actual path to the image file on your local machine.
+  - Ensure the request includes the `authorization` header with the JWT obtained after successful login.
+
+### 9. Add Offer
+
+- **Endpoint:** `POST /vendor/offer`
+- **Description:** Add a new promotional offer for the vendor.
+- **Request Body:**
+  ```json
+  {
+    "title": "",
+    "description": "",
+    "offerType": "",
+    "offerAmount": ,
+    "pincode": "",
+    "promoCode": "",
+    "startValidity": "",
+    "endValidity": "",
+    "isActive": "",
+    "minvalue": ""
+  }
+ - **Usage:** This request adds a new promotional offer for the vendor. 
+
+### 10. Get Offers
+
+- **Endpoint:** `GET /vendor/offers`
+- **Description:** Retrieve a list of all offers for the logged-in vendor.
+- **Usage:** Ensure the request includes the `authorization` header with the JWT obtained after successful login.
+
+### 11. Edit Offer
+
+- **Endpoint:** `PUT /vendor/offer/65a8dfaff45ba40285ea1a94`
+- **Description:** Edit the details of a specific offer for the vendor.
+- **Request Body:**
+  ```json
+  {
+    "offerType": "vendor",
+    "title": "100 off in week days",
+    "description": "Get 100 off on weekdays for every order",
+    "offerAmount": 100,
+    "startValidity": null,
+    "endValidity": null,
+    "pincode": "8809",
+    "isActive": true
+  }
+ - **Usage:**
+   - Replace `65a8dfaff45ba40285ea1a94` with the actual offer ID to update offer details.
+   - Ensure the request includes the `authorization` header with the JWT obtained after successful login.
