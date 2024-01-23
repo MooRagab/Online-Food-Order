@@ -39,7 +39,7 @@ The project follows a structured organization within the `src` directory:
 
 ## Postman Documentation
 
-Explore the API endpoints and examples using the [Online Food Order API Postman Documentation](/.Online-Food-Order.postman_collection.json).
+Explore the API endpoints and examples using the [Online Food Order API Postman Documentation](./Online-Food-Order.postman_collection.json).
 
 ## Usage
 
