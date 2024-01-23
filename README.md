@@ -23,9 +23,9 @@ The "Online Food Order API" is a Node.js, Express, and TypeScript project aimed 
 
 ## Project Structure
 
-The project follows a structured organization within the `src` directory:
-
 ![image](https://github.com/MooRagab/Online-Food-Order/assets/79729746/663ba054-65ee-400f-9dd7-631ce93e91b4)
+
+The project follows a structured organization within the `src` directory:
 
 - **controllers:** Contains controllers that handle the logic for each route.
 - **DB:** Manages database connection and schema models using Mongoose.
@@ -34,37 +34,18 @@ The project follows a structured organization within the `src` directory:
 - **routes:** Defines the application routes and their respective controllers.
 - **services:** Houses business logic and functionality separate from controllers.
 - **validation:** Includes validation schemas using the Joi library.
+- **dto:** Data Transfer Objects for defining the types and structures of data used in the application.
 - **index.ts:** The main entry point of the application.
 
-## Getting Started
+## Postman Documentation
 
-To run the project locally, follow these steps:
-
-1. Clone the repository: `git clone https://github.com/your-username/online-food-order-api.git`
-2. Install dependencies: `npm install`
-3. Create a `.env` file and add necessary environment variables (e.g., database connection details, API keys).
-4. Run the development server: `npm run dev`
+Explore the API endpoints and examples using the [Online Food Order API Postman Documentation](<https://github.com/MooRagab/Online-Food-Order/blob/master/Online-Food-Order.postman_collection.json>).
 
 ## Usage
 
-[Provide examples and code snippets demonstrating how to use the API, including endpoints and request/response formats.]
+### Retrieve User Information
 
-## Contributing
+To retrieve information about a user, make a `GET` request to the following endpoint:
 
-If you'd like to contribute to the project, please follow the [contribution guidelines](CONTRIBUTING.md).
-
-## License
-
-This project is licensed under the [Your License] - see the [LICENSE.md](LICENSE.md) file for details.
-
-## Acknowledgements
-
-[Optionally, acknowledge any third-party libraries, services, or inspirations.]
-
-## Contact
-
-For inquiries, please contact [Your Name] at [your.email@example.com].
-
----
-
-[Optional: Add any badges, shields, or relevant images to enhance your README's visual appeal.]
+```bash
+curl -X GET https://your-api-domain/users/{user_id}
