@@ -39,13 +39,32 @@ The project follows a structured organization within the `src` directory:
 
 ## Postman Documentation
 
-Explore the API endpoints and examples using the [Online Food Order API Postman Documentation](./Online-Food-Order.postman_collection.json).
+Explore the API endpoints and examples using the [Online Food Order API Postman Documentation](./postman-docs.json).
 
 ## Usage
 
-### Retrieve User Information
+To interact with the API, follow these steps:
 
-To retrieve information about a user, make a `GET` request to the following endpoint:
+1. Download the [Online Food Order API Postman Collection](./postman-docs.json).
+2. Import the collection into your Postman app.
 
-```bash
-curl -X GET https://your-api-domain/users/{user_id}
+### Admin Operations
+
+The Admin collection in the Postman documentation provides convenient API requests to manage vendors and transactions within the Online Food Order system.
+
+#### 1. Create Vendor
+
+- **Endpoint:** `POST /admin/vendor`
+- **Description:** Create a new vendor in the system.
+- **Request Body:**
+  ```json
+  {
+    "name": "Third Rest",
+    "foodType": "Chicken",
+    "ownerName": "Ahmed Ragab",
+    "password": "Mohamed8809",
+    "cPassword": "Mohamed8809",
+    "email": "rmidogab28422@gmail.com",
+    "pincode": "8809",
+    "phone": "01892459193"
+  }
