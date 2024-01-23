@@ -477,3 +477,80 @@ To create a payment, make a POST request to the specified endpoint with the auth
       "amount":  ,
       "paymentMod":""
   }
+
+  # Delivery Service API
+  
+##  Delivery Operations
+
+### 1. Delivery Sign Up
+**Endpoint:** `POST /delivery/signup`
+
+**Description:** Register as a delivery person.
+
+**Usage:**
+To sign up, make a POST request to the specified endpoint with the following raw JSON body:
+- **Request Body:**
+  ```json
+  {
+   "email": "your_email@example.com",
+   "password": "YourPassword123",
+   "cPassword": "YourPassword123",
+   "firstName": "YourFirstName",
+   "lastName": "YourLastName",
+   "phone": "YourPhoneNumber"
+   "pincode":"YourPincode"
+   "address":"YourAddress"
+  }
+  
+### 2. Delivery Log In
+**Endpoint:** `POST /delivery/login`
+
+**Description:** Log in as a delivery person.
+
+**Usage:**
+To log in, make a POST request to the specified endpoint with the following raw JSON body:
+- **Request Body:**
+  ```json
+  {
+   "email": "your_email@example.com",
+   "password": "YourPassword123",
+  }
+
+### 3. Delivery Profile
+**Endpoint:** `GET /delivery/profile`
+
+**Description:** Retrieve the profile information of the logged-in delivery person.
+
+**Usage:**
+To get the delivery person's profile, make a GET request to the specified endpoint with the authorization header containing the JWT obtained after successful login.
+
+
+### 4. Delivery Edit Profile
+**Endpoint:** `PATCH /delivery/profile`
+
+**Description:** Edit the profile information of the logged-in delivery person.
+
+**Usage:**
+To edit the delivery person's profile, make a PATCH request to the specified endpoint with the authorization header containing the JWT obtained after successful login. Include the updated profile information in the raw JSON body:
+- **Request Body:**
+  ```json
+  {
+   "password": "YourPassword123",
+   "firstName": "YourNewFirstName",
+   "lastName": "YourNewLastName",
+   "address": "YourNewAddress"
+  }
+  
+### 5. Delivery Status
+**Endpoint:** `PATCH /delivery/change-status`
+
+**Description:** Update the delivery person's status.
+
+**Usage:**
+To update the status, make a PATCH request to the specified endpoint with the authorization header containing the JWT obtained after successful login. Include the latitude and longitude in the raw JSON body:
+- **Request Body:**
+  ```json
+  {
+   "lat": Your latitude  ,
+   "lng": Your longitude 
+  }
